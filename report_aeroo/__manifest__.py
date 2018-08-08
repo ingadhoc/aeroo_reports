@@ -13,10 +13,10 @@
     'author': 'Alistek',
     'website': 'http://www.alistek.com',
     'complexity': "easy",
-    'depends': ['base', 'web'],
+    'depends': ['base', 'web', 'mail'],
     'data': [
              "views/report_view.xml",
-             "data/report_aeroo_data.xml", 
+             "data/report_aeroo_data.xml",
              "views/webclient_report_action.xml",
              "views/report_print_by_action.xml",
              #"wizard/add_print_button_view.xml",
