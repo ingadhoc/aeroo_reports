@@ -10,7 +10,7 @@ from io import BytesIO
 from PIL import Image
 from base64 import b64decode
 import time
-
+import base64
 from aeroolib.plugins.opendocument import Template, OOSerializer, _filter
 from aeroolib import __version__ as aeroolib_version
 from currency2text import supported_language, currency_to_text
@@ -298,6 +298,13 @@ class ReportAerooAbstract(models.AbstractModel):
         self.report = report
 
         #=======================================================================
+        def barcode(
+                barcode_type, value, width=600, height=100, humanreadable=0):
+            # TODO check that asimage and barcode both accepts width and height
+            img = self.env['ir.actions.report'].barcode(
+                barcode_type, value, width=width, height=height,
+                humanreadable=humanreadable)
+            return self._asimage(base64.b64encode(img))
         self.localcontext = {
             'user':     self.env.user,
             'user_lang': ctx.get('lang', False),
@@ -322,6 +329,7 @@ class ReportAerooAbstract(models.AbstractModel):
             'test':     self.test,
             'fields':     fields,
             'company':     self.env.user.company_id,
+            'barcode':     barcode,
         }
         self.localcontext.update(ctx)
         self._set_lang(self.company.partner_id.lang)
