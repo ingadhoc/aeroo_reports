@@ -231,7 +231,11 @@ class ReportAerooAbstract(models.AbstractModel):
             ctx_copy = dict(self.env.context)
             ctx_copy.update(lang=lang)
             obj.env.context = frozendict(ctx_copy)
-            obj.invalidate_cache()
+            # desactivamos el invalidate_cache porque rompe mail compose cuando
+            # el idioma del partner de la compañia del usuario
+            # (obj.env.context['lang']) es distinta al idioma del modelo (lang)
+            # y tampoco vimos necesidad de este invalidate_cache por ahora
+            # obj.invalidate_cache()
 
     def _format_lang(
             self, value, digits=None, grouping=True, monetary=False, dp=False,
