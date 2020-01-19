@@ -136,7 +136,6 @@
         <record model="ir.actions.act_window" id="action_report_stylesheets">
 			<field name="name">Aeroo Report Stylesheets</field>
 			<field name="res_model">report.stylesheets</field>
-			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 		</record>
         <!--========================-->

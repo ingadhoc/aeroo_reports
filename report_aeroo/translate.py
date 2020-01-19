@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -22,15 +21,15 @@
 
 import os
 import logging
-import openerp.tools as tools
-from openerp.tools.translate import trans_parse_rml, trans_parse_xsl, trans_parse_view, _extract_translatable_qweb_terms
+import odoo.tools as tools
+from odoo.tools.translate import trans_parse_rml, trans_parse_xsl, trans_parse_view, _extract_translatable_qweb_terms
 import fnmatch
 from os.path import join
 from lxml import etree
-from openerp.tools import misc
-from openerp.tools import osutil
+from odoo.tools import misc
+from odoo.tools import osutil
 from babel.messages import extract
-import openerp
+import odoo
 
 _logger = logging.getLogger(__name__)
 

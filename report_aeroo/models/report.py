@@ -103,7 +103,6 @@ class ReportAeroo(models.Model):
         context = self.env['res.users'].context_get()
         return report_obj.with_context(context).search(conditions, limit=1)
 
-    @api.multi
     def _read_template(self):
         self.ensure_one()
         fp = None
@@ -138,7 +137,6 @@ class ReportAeroo(models.Model):
         res = self.env['report.mimetypes'].search([('code','=','oo-odt')])
         return res and res[0].id or False
 
-    @api.multi
     def _get_extras(recs):
         result = []
         if recs.aeroo_docs_enabled():
@@ -247,7 +245,6 @@ class Parser(models.AbstractModel):
         # TODO get first available format
         self.out_format = False
 
-    @api.multi
     def unlink(self):
         trans_obj = self.env['ir.translation']
         trans_ids = trans_obj.search(
@@ -286,7 +283,6 @@ class Parser(models.AbstractModel):
             _logger.error('Error loading report parser: %s'+(filepath and ' "%s"' % filepath or ''), e)
             return None
 
-    @api.multi
     def write(self, vals):
 
         # TODO remove or adapt, it shouldn't be necessary

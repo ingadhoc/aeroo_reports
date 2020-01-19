@@ -5,9 +5,9 @@
 #
 ################################################################################
 
-from openerp.osv import osv, fields
-from openerp.tools import convert_xml_import
-from openerp.tools.translate import _
+from odoo.osv import osv, fields
+from odoo.tools import convert_xml_import
+from odoo.tools.translate import _
 import base64
 import lxml.etree
 import zipfile

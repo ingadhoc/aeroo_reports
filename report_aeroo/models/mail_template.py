@@ -18,7 +18,6 @@ from odoo.exceptions import UserError
 class MailTemplate(models.Model):
     _inherit = "mail.template"
 
-    @api.multi
     def generate_email(self, res_ids, fields=None):
         """Generates an email from the template for given the given model based on
         records given by res_ids.

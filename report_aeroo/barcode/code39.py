@@ -14,7 +14,7 @@
 # a min line width of 2px with "Hello World" encoded as "*HELLO WORLD*" in Code 39
 
 from PIL import Image, ImageDraw, ImageFont
-from openerp.tools import config, ustr
+from odoo.tools import config, ustr
 import os, sys
 
 marginx = 10

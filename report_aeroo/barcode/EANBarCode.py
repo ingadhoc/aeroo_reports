@@ -1,7 +1,7 @@
 # Copyright (c) 2009-2011 Alistek Ltd (http://www.alistek.com) All Rights Reserved.
 #                    General contacts <info@alistek.com>
 
-from openerp.tools import config, ustr
+from odoo.tools import config, ustr
 fontsize = 12
 
 """
