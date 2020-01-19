@@ -3,7 +3,6 @@ odoo.define("report_aeroo.report", function (require) {
 
     var core = require("web.core");
     var ActionManager = require("web.ActionManager");
-    var crash_manager = require("web.crash_manager");
     var framework = require("web.framework");
     var session = require("web.session");
     var _t = core._t;
@@ -12,17 +11,18 @@ odoo.define("report_aeroo.report", function (require) {
 
         _downloadReportAEROO: function (url, actions) {
             framework.blockUI();
-            var def = $.Deferred();
+            var self = this;
             var type = "aeroo";
+            var new_url = url;
             var cloned_action = _.clone(actions);
 
             if (cloned_action.context.active_ids) {
-                url += "/" + cloned_action.context.active_ids.join(',');
+                new_url += "/" + cloned_action.context.active_ids.join(',');
                 // odoo does not send context if no data, but I find it quite useful to send it regardless data or no data
-                url += "?context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
+                new_url += "?context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
             } else {
-                url += "?options=" + encodeURIComponent(JSON.stringify(cloned_action.data));
-                url += "&context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
+                new_url += "?options=" + encodeURIComponent(JSON.stringify(cloned_action.data));
+                new_url += "&context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
             }
             // esto es mas parecido a en otros modulos pero hace que, por ej, nuestro reporte de deuda deje de funcionar
             // if (_.isUndefined(cloned_action.data) ||
@@ -30,37 +30,38 @@ odoo.define("report_aeroo.report", function (require) {
             //     (_.isObject(cloned_action.data) && _.isEmpty(cloned_action.data)))
             // {
             //     if (cloned_action.context.active_ids) {
-            //         url += "/" + cloned_action.context.active_ids.join(',');
+            //         new_url += "/" + cloned_action.context.active_ids.join(',');
             //         // odoo does not send context if no data, but I find it quite useful to send it regardless data or no data
-            //         url += "?context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
+            //         new_url += "?context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
             //     }
             // } else {
-            //     url += "?options=" + encodeURIComponent(JSON.stringify(cloned_action.data));
-            //     url += "&context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
+            //     new_url += "?options=" + encodeURIComponent(JSON.stringify(cloned_action.data));
+            //     new_url += "&context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
             // }
 
-            var blocked = !session.get_file({
-                url: url,
-                data: {
-                    data: JSON.stringify([url, type]),
-                },
-                success: def.resolve.bind(def),
-                error: function () {
-                    crash_manager.rpc_error.apply(crash_manager, arguments);
-                    def.reject();
-                },
-                complete: framework.unblockUI,
+            return new Promise(function (resolve, reject) {
+                var blocked = !session.get_file({
+                    url: new_url,
+                    data: {
+                        data: JSON.stringify([new_url, type]),
+                    },
+                    success: resolve,
+                    error: (error) => {
+                        self.call('crash_manager', 'rpc_error', error);
+                        reject();
+                    },
+                    complete: framework.unblockUI,
+                });
+                if (blocked) {
+                    // AAB: this check should be done in get_file service directly,
+                    // should not be the concern of the caller (and that way, get_file
+                    // could return a deferred)
+                    var message = _t('A popup window with your report was blocked. You ' +
+                                     'may need to change your browser settings to allow ' +
+                                     'popup windows for this page.');
+                    this.do_warn(_t('Warning'), message, true);
+                }
             });
-            if (blocked) {
-                // AAB: this check should be done in get_file service directly,
-                // should not be the concern of the caller (and that way, get_file
-                // could return a deferred)
-                var message = _t('A popup window with your report was blocked. You ' +
-                                 'may need to change your browser settings to allow ' +
-                                 'popup windows for this page.');
-                this.do_warn(_t('Warning'), message, true);
-            }
-            return def;
         },
 
         _triggerDownload: function (action, options, type) {

@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
-<data noupdate="1">
+<odoo noupdate="1">
 
     <record id="aeroo_sample_report_id" model="ir.actions.report">
         <field name="name">Sample Report</field>
@@ -17,6 +16,5 @@
         <field name="tml_source">file</field>
     </record>
 
-</data>
-</openerp>
+</odoo>
 

@@ -5,12 +5,11 @@ import json
 import mimetypes
 from werkzeug import url_decode
 
-from odoo.http import route, request
+from odoo.http import route, request, content_disposition
 
 from odoo.addons.web.controllers import main
 from odoo.addons.web.controllers.main import (
     _serialize_exception,
-    content_disposition
 )
 from odoo.tools import html_escape
 
