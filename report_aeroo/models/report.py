@@ -248,6 +248,10 @@ class Parser(models.AbstractModel):
         if not fields:
             fields = list(self._fields)
             fields.remove('report_data')
+            if 'background_image' in fields:
+                fields.remove('background_image')
+            if 'logo' in fields:
+                fields.remove('logo')
         return super().read(fields, load=load)
 
     @api.onchange('in_format')
