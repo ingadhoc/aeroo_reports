@@ -239,6 +239,17 @@ class Parser(models.AbstractModel):
     report_data = fields.Binary(string='Template Content', attachment=True)
     ### ends Fields
 
+    def read(self, fields=None, load='_classic_read'):
+        # ugly hack to avoid report being read when we enter a view with report added on print menu
+        if not fields:
+            fields = list(self._fields)
+            fields.remove('report_data')
+            if 'background_image' in fields:
+                fields.remove('background_image')
+            if 'logo' in fields:
+                fields.remove('logo')
+        return super().read(fields, load=load)
+
     @api.onchange('in_format')
     def onchange_in_format(self):
         # TODO get first available format
