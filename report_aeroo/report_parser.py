@@ -589,7 +589,8 @@ class ReportAerooAbstract(models.AbstractModel):
             s = BytesIO()
             output.write(s)
             data = s.getvalue()
-            res = self._context.get('return_filename') and (data, results[0][1], results[0][2]) or data, results[0][1]
+            res = self._context.get('return_filename') and\
+                (data, results[0][1], results[0][2]) or (data, results[0][1])
         else:
             res = self.assemble_tasks(docids, data, report, self._context)
         # TODO
