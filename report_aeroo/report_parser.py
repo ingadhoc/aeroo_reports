@@ -111,7 +111,7 @@ class ReportAerooAbstract(models.AbstractModel):
         y = len(localspace['value_list'])
         return float(x)/float(y)
 
-    def _asimage(self, field_value, rotate=None, size_x=None, size_y=None,
+    def _asimage(self, field_value, rotate=None, size_x=None, size_y=None, dpix=96, dpiy=96,
                  uom='px', hold_ratio=False):
         """
         Prepare image for inserting into OpenOffice.org document
@@ -135,7 +135,7 @@ class ReportAerooAbstract(models.AbstractModel):
         # usamos dpi fijos porque si no en determinados casos nos achica o
         # agranda mucho las imagenes en los reportes (al menos el logo)
         # dpi_x, dpi_y = map(float, im.info.get('dpi', (96, 96)))
-        dpi_x, dpi_y = map(float, (96, 96))
+        dpi_x, dpi_y = map(float, (dpix, dpiy))
         try:
             if rotate != None:
                 im = im.rotate(int(rotate))
@@ -368,12 +368,12 @@ class ReportAerooAbstract(models.AbstractModel):
 
         #=======================================================================
         def barcode(
-                barcode_type, value, width=600, height=100, humanreadable=0):
+                barcode_type, value, width=600, height=100, dpi_x=96, dpi_y=96, humanreadable=0):
             # TODO check that asimage and barcode both accepts width and height
             img = self.env['ir.actions.report'].barcode(
                 barcode_type, value, width=width, height=height,
                 humanreadable=humanreadable)
-            return self._asimage(base64.b64encode(img))
+            return self._asimage(base64.b64encode(img), dpix=dpi_x, dpiy=dpi_y)
         self.localcontext = {
             'user':     self.env.user,
             'user_lang': ctx.get('lang', False),
