@@ -327,7 +327,7 @@ class ReportAerooAbstract(models.AbstractModel):
         if source == 'current':
             return self.env.context['lang'] or self.env.context['user_lang']
         elif source == 'company':
-            return self.env.user.company_id.partner_id.lang
+            return self.env.company.partner_id.lang
         elif source == 'user':
             return self.env.context['user_lang']
 
@@ -408,7 +408,7 @@ class ReportAerooAbstract(models.AbstractModel):
         # tmpl_type = 'odt'
         self.record_ids = docids
         self.ctx = ctx
-        self.company = self.env.user.company_id
+        self.company = self.env.company
         self.report = report
 
         #=======================================================================
@@ -446,7 +446,7 @@ class ReportAerooAbstract(models.AbstractModel):
             'gettext': self._translate_text,
             'test':     self.test,
             'fields':     fields,
-            'company':     self.env.user.company_id,
+            'company':     self.env.company,
             'barcode':     barcode,
         }
         self.localcontext.update(ctx)
