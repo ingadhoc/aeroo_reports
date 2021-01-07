@@ -128,7 +128,7 @@ def extend_trans_generate(lang, modules, cr):
         elif model=='ir.model.fields':
             try:
                 field_name = encode(obj.name)
-            except AttributeError, exc:
+            except AttributeError as exc:
                 _logger.error("name error in %s: %s", xml_name, str(exc))
                 continue
             objmodel = registry.get(obj.model)
