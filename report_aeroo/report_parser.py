@@ -32,11 +32,11 @@ from odoo.modules import load_information_from_description_file
 from odoo.tools.misc import posix_to_ldml
 from odoo.exceptions import MissingError
 # for format_datetime
-from odoo.tools.misc import pycompat, DATE_LENGTH
+from odoo.tools.misc import DATE_LENGTH
 import babel.dates
 
 
-def format_datetime(env, value, lang_code=False, date_format=False):
+def format_datetime(env, value, lang_code=False, date_format=False, tz='America/Argentina/Buenos_Aires'):
     '''
         This is an adaptation of odoo format_date method but to format datetimes
         TODO we should move it to another plase or make it simpler
@@ -52,7 +52,7 @@ def format_datetime(env, value, lang_code=False, date_format=False):
     '''
     if not value:
         return ''
-    if isinstance(value, pycompat.string_types):
+    if isinstance(value, str):
         if len(value) < DATE_LENGTH:
             return ''
         if len(value) > DATE_LENGTH:
@@ -67,7 +67,7 @@ def format_datetime(env, value, lang_code=False, date_format=False):
     if not date_format:
         date_format = posix_to_ldml('%s %s' % (lang.date_format, lang.time_format), locale=locale)
 
-    return babel.dates.format_datetime(value, format=date_format, locale=locale)
+    return babel.dates.format_datetime(value, format=date_format, locale=locale, tzinfo=tz)
 
 
 _logger = logging.getLogger(__name__)
@@ -354,7 +354,7 @@ class ReportAerooAbstract(models.AbstractModel):
         if date:
             return odoo_fd(self.env, value, lang_code=lang_code, date_format=date_format)
         elif date_time:
-            return format_datetime(self.env, value, lang_code=lang_code, date_format=date_format)
+            return format_datetime(self.env, value, lang_code=lang_code, date_format=date_format, tz=self.env.user.tz)
         return odoo_fl(
             self.env, value, digits, grouping, monetary, dp, currency_obj)
 
