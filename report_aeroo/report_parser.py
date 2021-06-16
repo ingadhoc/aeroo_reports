@@ -23,6 +23,7 @@ from genshi.template.eval import StrictLookup
 
 from odoo import release as odoo_release
 from odoo import api, models, fields
+from odoo import tools as tools
 from odoo.tools import file_open, frozendict
 from odoo.tools.translate import _, translate
 from odoo.tools.misc import formatLang as odoo_fl
@@ -448,6 +449,7 @@ class ReportAerooAbstract(models.AbstractModel):
             'fields':     fields,
             'company':     self.env.company,
             'barcode':     barcode,
+            'tools':     tools,
         }
         self.localcontext.update(ctx)
         self._set_lang(self.company.partner_id.lang)
