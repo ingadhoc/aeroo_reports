@@ -35,6 +35,8 @@ from odoo.exceptions import MissingError
 # for format_datetime
 from odoo.tools.misc import DATE_LENGTH
 import babel.dates
+import pytz
+import datetime
 
 
 def format_datetime(env, value, lang_code=False, date_format=False, tz='America/Argentina/Buenos_Aires'):
@@ -353,6 +355,9 @@ class ReportAerooAbstract(models.AbstractModel):
         split the method in two (formatlang and format_date)
         """
         if date:
+            # we force the timezone of the user if the value is datetime
+            if isinstance(value, (datetime.datetime)):
+                value = value.astimezone(pytz.timezone(self.env.user.tz))
             return odoo_fd(self.env, value, lang_code=lang_code, date_format=date_format)
         elif date_time:
             return format_datetime(self.env, value, lang_code=lang_code, date_format=date_format, tz=self.env.user.tz)
