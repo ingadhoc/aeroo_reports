@@ -10,6 +10,7 @@ from io import BytesIO
 from PIL import Image
 from base64 import b64decode
 import time
+import datetime
 import base64
 from aeroolib.plugins.opendocument import Template, OOSerializer, _filter
 from aeroolib import __version__ as aeroolib_version
@@ -428,7 +429,8 @@ class ReportAerooAbstract(models.AbstractModel):
             'user_lang': ctx.get('lang', False),
             'data':     data,
 
-            'time':     time,
+            'time': time,
+            'datetime': datetime,
             'asarray':  self._asarray,
             'average':  self._average,
             'currency_to_text': self._currency_to_text,
