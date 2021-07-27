@@ -358,7 +358,7 @@ class ReportAerooAbstract(models.AbstractModel):
         if date:
             # we force the timezone of the user if the value is datetime
             if isinstance(value, (datetime.datetime)):
-                value = value.astimezone(pytz.timezone(self.env.user.tz))
+                value = value.astimezone(pytz.timezone(self.env.user.tz or 'UTC'))
             return odoo_fd(self.env, value, lang_code=lang_code, date_format=date_format)
         elif date_time:
             return format_datetime(self.env, value, lang_code=lang_code, date_format=date_format, tz=self.env.user.tz)
