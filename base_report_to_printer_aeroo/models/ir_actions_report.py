@@ -9,7 +9,6 @@ class IrActionsReport(models.Model):
 
     _inherit = 'ir.actions.report'
 
-    @api.multi
     def print_document(self, record_ids, data=None):
         """ This method is called from the print actions (controller).
         Every time ir.action.print is called.
@@ -19,8 +18,7 @@ class IrActionsReport(models.Model):
         from server
         """
         if self.report_type == 'aeroo':
-            document, doc_format, _filename = self.with_context(
-                must_skip_send_to_printer=True).render_aeroo(
+            document, doc_format = self.with_context(must_skip_send_to_printer=True).render_aeroo(
                     record_ids, data=data)
             behaviour = self.behaviour()
             printer = behaviour.pop('printer', None)
@@ -28,14 +26,17 @@ class IrActionsReport(models.Model):
                 raise exceptions.Warning(
                     _('No printer configured to print this report.')
                 )
-            # TODO should we use doc_format instead of report_type
+            # TODO chequear que nosotros estamos haciendo igual que en
+            # https://github.com/OCA/report-print-send/blob/13.0/base_report_to_printer/models/ir_actions_report.py#L111
+            # pero en realidad luego pareciera que doc_format no es interpretado en
+            # https://github.com/OCA/report-print-send/blob/14.0/base_report_to_printer/models/printing_printer.py#L134
             return printer.print_document(
-                self, document, doc_format=self.report_type, **behaviour)
+                self, document, doc_format=doc_format, **behaviour)
 
         return super(IrActionsReport, self).print_document(
             record_ids, data=data)
 
-    def render_qweb_pdf(self, docids, data=None):
+    def render_qweb_pdf(self, res_ids=None, data=None):
         """ This method is called directly from another places in odoo like
         portal, website, pos, email template attachments, etc.
 
@@ -49,4 +50,4 @@ class IrActionsReport(models.Model):
         # interesante hacerlo para pos."
         return super(IrActionsReport, self.with_context(
             must_skip_send_to_printer=True)).render_qweb_pdf(
-            docids, data=data)
+            res_ids=res_ids, data=data)
