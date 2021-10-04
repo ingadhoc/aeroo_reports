@@ -3,6 +3,7 @@ odoo.define("base_report_to_printer_aeroo.print", function(require) {
 
     var ActionManager = require("web.ActionManager");
     var core = require("web.core");
+    var core = require("report_aeroo.report");
     var _t = core._t;
 
     ActionManager.include({
