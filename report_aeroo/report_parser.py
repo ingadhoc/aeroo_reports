@@ -432,7 +432,7 @@ class ReportAerooAbstract(models.AbstractModel):
             'partner_address': self.partner_address,
             'storage': {},
             'user':     self.env.user,
-            'user_lang': ctx.get('lang', False),
+            'user_lang': ctx.get('lang', self.env.user.lang),
             'data':     data,
 
             'time': time,
