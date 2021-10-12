@@ -3,15 +3,18 @@ odoo.define("base_report_to_printer_aeroo.print", function(require) {
 
     var ActionManager = require("web.ActionManager");
     var core = require("web.core");
-    var core = require("report_aeroo.report");
     var _t = core._t;
 
     ActionManager.include({
-        _triggerDownload: function(action, options, type) {
-            var self = this;
-            var _super = this._super;
-            if (type === "aeroo") {
-                this._rpc({
+        _handleAction: function(action) {
+            if (
+                action.type === "ir.actions.report" &&
+                action.report_type === 'aeroo'
+            ) {
+                var self = this;
+                var _super = this._super;
+                var callersArguments = arguments;
+                return this._rpc({
                     model: "ir.actions.report",
                     method: "print_action_for_report_name",
                     args: [action.report_name],
@@ -47,12 +50,11 @@ odoo.define("base_report_to_printer_aeroo.print", function(require) {
                             }
                         );
                     } else {
-                        return _super.apply(self, [action, options, type]);
+                        return _super.apply(self, callersArguments);
                     }
                 });
-            } else {
-                return _super.apply(self, [action, options, type]);
             }
+            return this._super.apply(this, arguments);
         },
     });
 });
