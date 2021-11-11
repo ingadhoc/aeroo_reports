@@ -21,7 +21,8 @@ class DocsConfigInstaller(models.TransientModel):
     _description = 'docs_config.installer'
     _inherit = 'res.config.installer'
     _rec_name = 'host'
-    _logo_image = None
+    _logo_image = fields.Binary()
+    
     
     @api.model
     def _get_image(self):
@@ -116,7 +117,7 @@ class DocsConfigInstaller(models.TransientModel):
         self.state = state
         mod_obj = self.env['ir.model.data']
         act_obj = self.env['ir.actions.act_window']
-        result = mod_obj.get_object_reference('report_aeroo',
+        result = mod_obj.check_object_reference('report_aeroo',
                      'action_docs_config_wizard')
         act_id = result and result[1] or False
         result = act_obj.search([('id','=',act_id)]).read()[0]

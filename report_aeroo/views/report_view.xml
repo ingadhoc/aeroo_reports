@@ -20,13 +20,14 @@
             </field>
         </record>
         <!--========================-->
-        <act_window name="Test the Report"
-            res_model="aeroo.print_by_action"
-            binding_model="ir.actions.report"
-            view_mode="form"
-            target="new"
-            binding_views="list"
-            id="action_aeroo_print_by_action_window"/>
+        <record id="action_aeroo_print_by_action_window" model="ir.actions.act_window">
+            <field name="name">Test the Report</field>
+            <field name="res_model">aeroo.print_by_action</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="base.model_ir_actions_report"/>
+            <field name="binding_view_types">list</field>
+        </record>
         <!--========================-->
         <!--========================-->
         <record model="ir.ui.view" id="act_aeroo_report_xml_view">

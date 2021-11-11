@@ -89,6 +89,12 @@ class ReportAerooAbstract(models.AbstractModel):
     _name = 'report.report_aeroo.abstract'
     _description = 'report.report_aeroo.abstract'
     docs_client = None
+    model = None
+    record_ids = None
+    ctx = None
+    company = None
+    repo = None
+
 
     def __filter(self, val):
         if isinstance(val, models.BaseModel) and val:
@@ -565,9 +571,8 @@ class ReportAerooAbstract(models.AbstractModel):
 
     @api.model
     def aeroo_report(self, docids, data):
-
-        self.name = self._context.get('report_name')
-        report = self.env['ir.actions.report']._get_report_from_name(self.name)
+        report_name = self._context.get('report_name')
+        report = self.env['ir.actions.report']._get_report_from_name(report_name)
         # TODO
         #_logger.info("Start Aeroo Reports %s (%s)" % (name, ctx.get('active_model')), logging.INFO) # debug mode
 

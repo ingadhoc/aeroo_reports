@@ -86,7 +86,7 @@ def extend_trans_generate(lang, modules, cr):
             push_translation(mod, type, name, res_id, term)
 
     def get_root_view(xml_id):
-        view = model_data_obj.xmlid_to_object(cr, uid, xml_id)
+        view = model_data_obj.env.ref(cr, uid, xml_id)
         if view:
             while view.mode != 'primary':
                 view = view.inherit_id

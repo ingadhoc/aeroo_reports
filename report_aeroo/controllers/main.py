@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 import json
 import mimetypes
-from werkzeug import url_decode
+from werkzeug.urls import url_decode
 
 from odoo.http import route, request, content_disposition
 
@@ -37,16 +37,16 @@ class ReportController(main.ReportController):
 
         if docids:
             docids = [int(i) for i in docids.split(',')]
-        if data.get('options'):
-            data.update(json.loads(data.pop('options')))
-        if data.get('context'):
+        if data.get("options"):
+            data.update(json.loads(data.pop("options")))
+        if data.get("context"):
             # Ignore 'lang' here, because the context in data is the
             # one from the webclient *but* if the user explicitely wants to
             # change the lang, this mechanism overwrites it.
-            data['context'] = json.loads(data['context'])
-            if data['context'].get('lang'):
-                del data['context']['lang']
-            context.update(data['context'])
+            data["context"] = json.loads(data["context"])
+            if data["context"].get("lang"):
+                del data["context"]["lang"]
+            context.update(data["context"])
 
         # Aeroo Reports starts here
         report_obj = request.env['ir.actions.report']
@@ -55,8 +55,7 @@ class ReportController(main.ReportController):
             report = report.sudo()
         context['report_name'] = reportname
         context['return_filename'] = True
-        res, extension, filename = report.with_context(context).render_aeroo(
-            docids, data=data)
+        res, extension, filename = report.with_context(context).render_aeroo(docids, data=data)
         mimetype = self.MIMETYPES.get(res, 'application/octet-stream')
         httpheaders = [
             ('Content-Disposition', content_disposition(filename)),
@@ -66,7 +65,7 @@ class ReportController(main.ReportController):
         return request.make_response(res, headers=httpheaders)
 
     @route()
-    def report_download(self, data, token, context=None):
+    def report_download(self, data, context=None):
         """This function is used by 'qwebactionmanager.js' in order to trigger
         the download of a py3o/controller report.
 
@@ -77,17 +76,15 @@ class ReportController(main.ReportController):
         requestcontent = json.loads(data)
         url, type = requestcontent[0], requestcontent[1]
         if type != 'aeroo':
-            return super(ReportController, self).report_download(data, token, context=context)
+            return super(ReportController, self).report_download(data, context=context)
         try:
             reportname = url.split('/report/aeroo/')[1].split('?')[0]
             docids = None
             if '/' in reportname:
                 reportname, docids = reportname.split('/')
-
             # on aeroo we support docids + data
             data = url_decode(url.split('?')[1]).items()
-            response = self.report_routes(
-                reportname, docids=docids, converter='aeroo', **dict(data))
+            response = self.report_routes(reportname, docids=docids, converter='aeroo', context=context)
             # if docids:
             #     # Generic report:
             #     response = self.report_routes(
@@ -98,7 +95,6 @@ class ReportController(main.ReportController):
             #     data = url_decode(url.split('?')[1]).items()
             #     response = self.report_routes(
             #         reportname, converter='aeroo', **dict(data))
-            response.set_cookie('fileToken', token)
             return response
         except Exception as e:
             se = _serialize_exception(e)

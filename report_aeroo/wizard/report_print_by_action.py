@@ -16,17 +16,17 @@ class report_print_by_action(models.TransientModel):
     _name = 'aeroo.print_by_action'
     _description = 'aeroo.print_by_action'
 
-    def to_print(recs):
+    def to_print(self):
         valid_input = re.match('^\s*\[?\s*((\d+)(\s*,\s*\d+)*)\s*\]?\s*$',
-                                                            recs[0].object_ids)
+                                                            self[0].object_ids)
         valid_input = valid_input and valid_input.group(1) or False
         if not valid_input:
             raise Warning(
                 _("Input single record ID or number of comma separated IDs!"))
         print_ids = eval("[%s]" % valid_input, {})
-        rep_obj = recs.env['ir.actions.report']
-        report = rep_obj.browse(recs.env.context['active_id'])[0]
-        ctx = dict(recs.env.context)
+        rep_obj = self.env['ir.actions.report']
+        report = rep_obj.browse(self.env.context['active_id'])[0]
+        ctx = dict(self.env.context)
         ctx.update({'active_id': print_ids[0],
                     'active_ids': print_ids,
                     'active_model': report.model,
@@ -45,15 +45,15 @@ class report_print_by_action(models.TransientModel):
                 'context': ctx,
                 'target': 'current',
                 }
-        _logger.exception('AEROO by_action======================= %s' % (res,))
+        # _logger.exception('AEROO by_action======================= %s' % (res,))
         return res
-    
+
     @api.model
     def _get_model(self):
         rep_obj = self.env['ir.actions.report']
         report = rep_obj.browse(self.env.context['active_ids'])
         return report[0].model
-    
+
     @api.model
     def _get_last_ids(self):
         conds = [('name','=',self._get_model()),('create_uid','=',self.env.uid)]
@@ -67,15 +67,14 @@ class report_print_by_action(models.TransientModel):
     ### ends Fields
         
     @api.model
-    def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
-                                                                submenu=False):
+    def fields_view_get(self, view_id=None, view_type='form', toolbar=False, submenu=False):
         if self.env.context.get('active_id'):
             rep_obj = self.env['ir.actions.report']
             report = rep_obj.browse(self.env.context['active_id'])
             if report.report_name == 'aeroo.printscreen.list':
                 raise Warning(
                   _("Print Screen report does not support this functionality!"))
-        res = super(report_print_by_action, self).fields_view_get(view_id, 
+        res = super().fields_view_get(view_id, 
                                     view_type, toolbar=toolbar, submenu=submenu)
         return res
 

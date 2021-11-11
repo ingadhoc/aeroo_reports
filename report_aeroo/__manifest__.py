@@ -7,7 +7,7 @@
 
 {
     'name': 'Aeroo Reports',
-    'version': "13.0.1.0.0",
+    'version': "15.0.1.0.0",
     'category': 'Generic Modules/Aeroo Reports',
     'summary': 'Enterprise grade reporting solution',
     'author': 'Alistek',
@@ -17,15 +17,19 @@
     'data': [
              "views/report_view.xml",
              "data/report_aeroo_data.xml",
-             "views/webclient_report_action.xml",
              "views/report_print_by_action.xml",
              #"wizard/add_print_button_view.xml",
              #"wizard/remove_print_button_view.xml",
              "views/installer.xml",
              "security/ir.model.access.csv"
              ],
-    "license" : "GPL-3 or any later version",
-    'installable': False,
+    'assets': {
+        'web.assets_backend': [
+            'report_aeroo/static/src/js/report/reportactionmanager.js',
+           ],
+    },
+    "license": "GPL-3 or any later version",
+    'installable': True,
     'active': False,
     'application': True,
     'auto_install': False,

@@ -199,7 +199,7 @@ class Parser(models.AbstractModel):
         ('default',_('Default')),
         ('loc',_('Location')),
         ],'State of Parser', index=True, default='default')
-    report_type = fields.Selection(selection_add=[('aeroo', _('Aeroo Reports'))])
+    report_type = fields.Selection(selection_add=[('aeroo', _('Aeroo Reports'))], ondelete={'aeroo': 'cascade'})
     process_sep = fields.Boolean('Process Separately',
         help='Generate the report for each object separately, \
               then merge reports.')
