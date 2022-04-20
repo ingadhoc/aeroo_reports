@@ -5,7 +5,7 @@
 ################################################################################
 
 import encodings
-import imp
+import importlib
 import sys
 import os
 import binascii
@@ -219,7 +219,7 @@ class Parser(models.AbstractModel):
     disable_fallback = fields.Boolean('Disable Format Fallback',
         help='Raises error on format convertion failure. Prevents returning \
               original report file type if no convertion is available.')
-    extras = fields.Char('Extra options', compute='_get_extras', method=True,
+    extras = fields.Char('Extra options', compute='_get_extras',
         size=256)
     deferred = fields.Selection([
         ('off',_('Off')),
@@ -276,10 +276,10 @@ class Parser(models.AbstractModel):
                     mod_name = '%s_%s_%s' % (self.env.cr.dbname, mod_name, key)
 
                     if file_ext.lower() == '.py':
-                        py_mod = imp.load_source(mod_name, filepath)
+                        py_mod = importlib.load_source(mod_name, filepath)
 
                     elif file_ext.lower() == '.pyc':
-                        py_mod = imp.load_compiled(mod_name, filepath)
+                        py_mod = importlib.load_compiled(mod_name, filepath)
 
                     if expected_class in dir(py_mod):
                         class_inst = py_mod.Parser
