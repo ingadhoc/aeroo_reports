@@ -5,7 +5,7 @@
 ################################################################################
 
 import encodings
-import importlib
+from importlib import util
 import sys
 import os
 import binascii
@@ -18,7 +18,7 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import file_open
 from odoo.tools.translate import _
-from odoo.modules import module
+from odoo import addons
 
 _logger = logging.getLogger(__name__)
 
@@ -267,19 +267,19 @@ class Parser(models.AbstractModel):
         class_inst = None
         expected_class = 'Parser'
         try:
-            for mod_path in module.ad_paths:
+            for mod_path in addons.__path__:
                 if os.path.lexists(mod_path+os.path.sep+path.split(os.path.sep)[0]):
                     filepath = mod_path+os.path.sep+path
                     filepath = os.path.normpath(filepath)
                     sys.path.append(os.path.dirname(filepath))
                     mod_name, file_ext = os.path.splitext(os.path.split(filepath)[-1])
                     mod_name = '%s_%s_%s' % (self.env.cr.dbname, mod_name, key)
-
                     if file_ext.lower() == '.py':
-                        py_mod = importlib.load_source(mod_name, filepath)
-
+                        spec = util.spec_from_file_location(mod_name, filepath)
+                        py_mod = util.module_from_spec(spec)
+                        spec.loader.exec_module(py_mod)
                     elif file_ext.lower() == '.pyc':
-                        py_mod = importlib.load_compiled(mod_name, filepath)
+                        py_mod = load_compiled(mod_name, filepath)
 
                     if expected_class in dir(py_mod):
                         class_inst = py_mod.Parser

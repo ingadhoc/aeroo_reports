@@ -333,7 +333,7 @@ class ReportAerooAbstract(models.AbstractModel):
         elif source == 'user':
             return self.env.context['user_lang']
 
-    def _set_lang(self, lang, obj=None, context=None):
+    def _set_lang(self, lang, obj=None, context=False):
         if context:
             context.update(lang=lang)
         if obj is None and 'objects' in context:
