@@ -13,7 +13,7 @@ import datetime
 import base64
 from aeroolib.plugins.opendocument import Template, OOSerializer, _filter
 from aeroolib import __version__ as aeroolib_version
-from currency2text import supported_language, currency_to_text
+from currency2text import supported_language
 from .docs_client_lib import DOCSConnection
 from .exceptions import ConnectionError
 from PyPDF2 import PdfFileWriter, PdfFileReader
@@ -411,6 +411,13 @@ class ReportAerooAbstract(models.AbstractModel):
         """
         model = ctx.get('active_model', False)
         company = self.env.company
+
+        self.env.model = ctx.get('active_model', False)
+        # tmpl_type = 'odt'
+        # self.env.record_ids = docids
+        # self.ctx = ctx
+        # self.company = self.env.company
+        self.env.report = report
 
         #=======================================================================
         def barcode(
