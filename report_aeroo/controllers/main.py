@@ -84,6 +84,10 @@ class ReportController(main.ReportController):
                 reportname, docids = reportname.split('/')
             # on aeroo we support docids + data
             data = url_decode(url.split('?')[1]).items()
+            # TODO deberiamos ver si podemos mejorar esto que va de la mano con algo que comentamos en js
+            # y no parece ser lo que hacen otros. Basicamente estamos obteniendo lo que mandamos en context al imprimir
+            # el reporte, desde la URl
+            context = dict(data).get('context', context)
             response = self.report_routes(reportname, docids=docids, converter='aeroo', context=context)
             # if docids:
             #     # Generic report:
