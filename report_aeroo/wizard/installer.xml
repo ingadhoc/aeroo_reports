@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    
-    <!--DOCS Config wizard -->
-    
+
     <record id="view_docs_config_installer" model="ir.ui.view">
       <field name="name">docs_config.installer.view</field>
       <field name="model">docs_config.installer</field>
@@ -83,7 +80,6 @@
       <field name="target">new</field>
     </record>
 
-	<menuitem id="menu_docs_config_wizard" action="action_docs_config_wizard" parent="base.reporting_menuitem" sequence="15"/>
+    <menuitem id="menu_docs_config_wizard" action="action_docs_config_wizard" parent="base.reporting_menuitem" sequence="15"/>
 
-  </data>
 </odoo>

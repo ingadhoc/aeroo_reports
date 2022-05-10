@@ -21,8 +21,7 @@ class DocsConfigInstaller(models.TransientModel):
     _inherit = 'res.config.installer'
     _rec_name = 'host'
     _logo_image = fields.Binary()
-    
-    
+
     @api.model
     def _get_image(self):
         if self._logo_image:
@@ -44,10 +43,10 @@ class DocsConfigInstaller(models.TransientModel):
         else:
             self._logo_image = b64encode(im.read())
             return self._logo_image
-    
+
     def _get_image_fn(recs):
         recs.config_logo = recs._get_image()
-    
+
     ### Fields
     enabled = fields.Boolean('Enabled', default=False)
     host = fields.Char('Host', size=64, required=True, default='localhost')
@@ -67,7 +66,7 @@ class DocsConfigInstaller(models.TransientModel):
     config_logo = fields.Binary(compute='_get_image_fn', string='Image',
             default=_get_image)
     ### ends Fields
-    
+
     @api.model
     def default_get(self, allfields):
         icp = self.env['ir.config_parameter'].sudo()
@@ -80,7 +79,7 @@ class DocsConfigInstaller(models.TransientModel):
         defaults['username'] = icp.get_param('aeroo.docs_username') or 'anonymous'
         defaults['password'] = icp.get_param('aeroo.docs_password') or 'anonymous'
         return defaults
-    
+
     def check(self):
         icp = self.env['ir.config_parameter'].sudo()
         icp.set_param('aeroo.docs_enabled', str(self.enabled))
@@ -91,7 +90,7 @@ class DocsConfigInstaller(models.TransientModel):
         icp.set_param('aeroo.docs_password', self.password)
         error_details = ''
         state = 'done'
-        
+
         if self.enabled:
             try:
                 fp = file_open('report_aeroo/test_temp.odt', mode='rb')
