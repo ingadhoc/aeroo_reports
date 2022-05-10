@@ -26,11 +26,8 @@
                                 <field name="stylesheet_id" attrs="{'invisible': [('styles_mode','&lt;&gt;','specified')]}"/>
                                 <field name="charset" attrs="{'invisible': [('in_format','&lt;&gt;','genshi-raw')]}"/>
                             </group>
-                            <group string="Parser">
-                                <field name="parser_state"/>
-                                <field name="parser_loc" attrs="{'invisible': [('parser_state','&lt;&gt;','loc')],'required': [('parser_state','=','loc'), ('report_type','=','aeroo')]}"/>
-                            </group>
                             <group string="Advanced">
+                                <field name="parser_model"/>
                                 <field name="process_sep"/>
                                 <field name="replace_report_id" domain="[('model','=',model),('id','&lt;&gt;',active_id)]"/>
                                 <field name="preload_mode" attrs="{'invisible': ['|',('in_format','=','genshi-raw'),('tml_source','=','parser')]}"/>

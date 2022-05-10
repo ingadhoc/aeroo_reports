@@ -5,20 +5,14 @@
 ################################################################################
 
 import encodings
-from importlib import util
-import sys
-import os
 import binascii
 from base64 import b64decode
-import zipimport
-from lxml import etree
 import logging
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import file_open
 from odoo.tools.translate import _
-from odoo import addons
 
 _logger = logging.getLogger(__name__)
 
@@ -68,32 +62,13 @@ class ReportAeroo(models.Model):
 
     @api.model
     def render_aeroo(self, docids, data):
-        report_model_name = 'report.%s' % self.report_name
-
-        report_parser = self.env.get(report_model_name)
-        context = dict(self.env.context)
-        if report_parser is None and self.parser_loc:
-            try:
-                # TODO we should simplify this and avoid needing load_from_file
-                # just to get model name
-                report_parser = self.env[
-                    self.load_from_file(self.parser_loc, self.id)._name]
-            except Exception:
-                _logger.warning(
-                    'Could not load parser from file %s', self.parser_loc)
-        if report_parser is None:
-            report_parser = self.env['report.report_aeroo.abstract']
-
-        context.update({
-            'active_model': self.model,
-            'report_name': self.report_name,
-            })
-
-        return report_parser.with_context(context).aeroo_report(docids, data)
+        report_parser = self.env[self.parser_model or 'report.report_aeroo.abstract']
+        return report_parser.with_context(
+            active_model=self.model, report_name=self.report_name).aeroo_report(docids, data)
 
     @api.model
     def _get_report_from_name(self, report_name):
-        res = super(ReportAeroo, self)._get_report_from_name(report_name)
+        res = super()._get_report_from_name(report_name)
         if res:
             return res
         report_obj = self.env['ir.actions.report']
@@ -185,20 +160,8 @@ class ReportAeroo(models.Model):
         ('file','File'),
         ('parser','Parser'),
         ], string='Template source', default='database', index=True)
-    parser_def = fields.Text('Parser Definition',
-        default="""from odoo import api, models
-class Parser(models.AbstractModel):
-    _inherit = 'report.report_aeroo.abstract'
-    _name = 'report.thisismyparserservicename'"""
-        )
-    parser_loc = fields.Char('Parser location', size=128,
-        help="Path to the parser location. Beginning of the path must be start \
-              with the module name!\n Like this: {module name}/{path to the \
-              parser.py file}")
-    parser_state = fields.Selection([
-        ('default',_('Default')),
-        ('loc',_('Location')),
-        ],'State of Parser', index=True, default='default')
+    parser_model = fields.Char(
+        help='Optional model to be used as parser, if not configured "report.report_aeroo.abstract" will be used')
     report_type = fields.Selection(selection_add=[('aeroo', _('Aeroo Reports'))], ondelete={'aeroo': 'cascade'})
     process_sep = fields.Boolean('Process Separately',
         help='Generate the report for each object separately, \
@@ -239,6 +202,12 @@ class Parser(models.AbstractModel):
     report_data = fields.Binary(string='Template Content', attachment=True)
     ### ends Fields
 
+    @api.constrains('parser_model')
+    def _check_parser_model(self):
+        for rec in self.filtered('parser_model'):
+            if not rec.env['ir.model'].search([('name', '=', rec.parser_model)], limit=1):
+                raise UserError(_('Parser model %s not found on database.') % (rec.parser_model))
+
     def read(self, fields=None, load='_classic_read'):
         # ugly hack to avoid report being read when we enter a view with report added on print menu
         if not fields:
@@ -261,37 +230,6 @@ class Parser(models.AbstractModel):
             [('type', '=', 'report'), ('res_id', 'in', self.ids)])
         trans_ids.unlink()
         return super(ReportAeroo, self).unlink()
-
-    @api.model
-    def load_from_file(self, path, key):
-        class_inst = None
-        expected_class = 'Parser'
-        try:
-            for mod_path in addons.__path__:
-                if os.path.lexists(mod_path+os.path.sep+path.split(os.path.sep)[0]):
-                    filepath = mod_path+os.path.sep+path
-                    filepath = os.path.normpath(filepath)
-                    sys.path.append(os.path.dirname(filepath))
-                    mod_name, file_ext = os.path.splitext(os.path.split(filepath)[-1])
-                    mod_name = '%s_%s_%s' % (self.env.cr.dbname, mod_name, key)
-                    if file_ext.lower() == '.py':
-                        spec = util.spec_from_file_location(mod_name, filepath)
-                        py_mod = util.module_from_spec(spec)
-                        spec.loader.exec_module(py_mod)
-                    elif file_ext.lower() == '.pyc':
-                        py_mod = load_compiled(mod_name, filepath)
-
-                    if expected_class in dir(py_mod):
-                        class_inst = py_mod.Parser
-                    return class_inst
-                elif os.path.lexists(mod_path+os.path.sep+path.split(os.path.sep)[0]+'.zip'):
-                    zimp = zipimport.zipimporter(mod_path+os.path.sep+path.split(os.path.sep)[0]+'.zip')
-                    return zimp.load_module(path.split(os.path.sep)[0]).parser.Parser
-        except SyntaxError as e:
-            raise UserError(_('Syntax Error !'), e)
-        except Exception as e:
-            _logger.error('Error loading report parser: %s'+(filepath and ' "%s"' % filepath or ''), e)
-            return None
 
     def write(self, vals):
 
