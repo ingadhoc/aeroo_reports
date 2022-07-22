@@ -55,7 +55,7 @@ class ReportController(main.ReportController):
             report = report.sudo()
         context['report_name'] = reportname
         context['return_filename'] = True
-        res, extension, filename = report.with_context(context).render_aeroo(docids, data=data)
+        res, extension, filename = report.with_context(context)._render_aeroo(docids, data=data)
         mimetype = self.MIMETYPES.get(res, 'application/octet-stream')
         httpheaders = [
             ('Content-Disposition', content_disposition(filename)),

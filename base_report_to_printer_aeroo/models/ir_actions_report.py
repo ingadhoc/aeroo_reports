@@ -18,7 +18,7 @@ class IrActionsReport(models.Model):
         from server
         """
         if self.report_type == 'aeroo':
-            document, doc_format = self.with_context(must_skip_send_to_printer=True).render_aeroo(
+            document, doc_format = self.with_context(must_skip_send_to_printer=True)._render_aeroo(
                     record_ids, data=data)
             behaviour = self.behaviour()
             printer = behaviour.pop('printer', None)
@@ -36,7 +36,7 @@ class IrActionsReport(models.Model):
         return super(IrActionsReport, self).print_document(
             record_ids, data=data)
 
-    def render_qweb_pdf(self, res_ids=None, data=None):
+    def _render_qweb_pdf(self, res_ids=None, data=None):
         """ This method is called directly from another places in odoo like
         portal, website, pos, email template attachments, etc.
 
@@ -49,5 +49,5 @@ class IrActionsReport(models.Model):
         # mande a impresora (portal, plantilla de email, etc), tal vez sea
         # interesante hacerlo para pos."
         return super(IrActionsReport, self.with_context(
-            must_skip_send_to_printer=True)).render_qweb_pdf(
+            must_skip_send_to_printer=True))._render_qweb_pdf(
             res_ids=res_ids, data=data)
