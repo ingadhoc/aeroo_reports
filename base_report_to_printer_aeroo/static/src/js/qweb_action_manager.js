@@ -1,60 +1,32 @@
-odoo.define("base_report_to_printer_aeroo.print", function(require) {
-    "use strict";
+/** @odoo-module */
+import {registry} from "@web/core/registry";
 
-    var ActionManager = require("web.ActionManager");
-    var core = require("web.core");
-    var _t = core._t;
+async function cupsReportActionHandler(action, options, env) {
+    debugger;
+    if (action.report_type === "aeroo") {
+        const orm = env.services.orm;
 
-    ActionManager.include({
-        _handleAction: function(action) {
-            if (
-                action.type === "ir.actions.report" &&
-                action.report_type === 'aeroo'
-            ) {
-                var self = this;
-                var _super = this._super;
-                var callersArguments = arguments;
-                return this._rpc({
-                    model: "ir.actions.report",
-                    method: "print_action_for_report_name",
-                    args: [action.report_name],
-                }).then(function(print_action) {
-                    if (print_action && print_action.action === "server") {
-                        self._rpc({
-                            model: "ir.actions.report",
-                            method: "print_document",
-                            args: [action.id, action.context.active_ids],
-                            kwargs: {data: action.data || {}},
-                            context: action.context || {},
-                        }).then(
-                            function() {
-                                self.do_notify(
-                                    _t("Report"),
-                                    _.str.sprintf(
-                                        _t("Document sent to the printer %s"),
-                                        print_action.printer_name
-                                    )
-                                );
-                            },
-                            function() {
-                                self.do_notify(
-                                    _t("Report"),
-                                    _.str.sprintf(
-                                        _t(
-                                            "Error when sending the document " +
-                                                "to the printer "
-                                        ),
-                                        print_action.printer_name
-                                    )
-                                );
-                            }
-                        );
-                    } else {
-                        return _super.apply(self, callersArguments);
-                    }
-                });
+        const print_action = await orm.call(
+            "ir.actions.report",
+            "print_action_for_report_name",
+            [action.report_name]
+        );
+        if (print_action && print_action.action === "server") {
+            const result = await orm.call("ir.actions.report", "print_document", [
+                action.id,
+                action.context.active_ids,
+                action.data,
+            ]);
+            if (result) {
+                env.services.notification.add(env._t("Successfully sent to printer!"));
+            } else {
+                env.services.notification.add(env._t("Could not sent to printer!"));
             }
-            return this._super.apply(this, arguments);
-        },
-    });
-});
+        }
+        return true;
+    }
+}
+
+registry
+    .category("ir.actions.report handlers")
+    .add("cups_report_action_handler_aeroo", cupsReportActionHandler);

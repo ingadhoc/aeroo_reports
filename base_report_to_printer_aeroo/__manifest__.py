@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Report to print Aeroo',
-    'version': '13.0.1.0.0',
+    'version': "15.0.1.0.0",
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'author': 'ADHOC SA',
@@ -29,9 +29,12 @@
         'report_aeroo',
         'base_report_to_printer',
     ],
-    'data': [
-        'views/assets.xml',
-    ],
-    'installable': False,
+    'data': [],
+    'assets': {
+        'web.assets_backend': [
+            'base_report_to_printer_aeroo/static/src/js/qweb_action_manager.js',
+        ],
+    },
+    'installable': True,
     'auto_install': True,
 }
