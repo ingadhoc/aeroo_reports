@@ -29,7 +29,7 @@ from odoo.tools import file_open, frozendict
 from odoo.tools.translate import _, translate
 from odoo.tools.misc import formatLang as odoo_fl
 from odoo.tools.misc import format_date as odoo_fd
-from odoo.tools.safe_eval import safe_eval
+from odoo.tools.safe_eval import safe_eval, time as safeval_time
 from odoo.modules import load_information_from_description_file
 from odoo.tools.misc import posix_to_ldml
 from odoo.exceptions import MissingError
@@ -532,7 +532,7 @@ class ReportAerooAbstract(models.AbstractModel):
         if report.print_report_name and not len(docids) > 1:
             obj = self.env[report.model].browse(docids)
             print_report_name = safe_eval(
-                report.print_report_name, {'object': obj, 'time': time})
+                report.print_report_name, {'object': obj, 'time': safeval_time})
 
         if report.in_format == code:
             filename = '%s.%s' % (
