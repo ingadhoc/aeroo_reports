@@ -7,14 +7,11 @@ from werkzeug.urls import url_decode
 
 from odoo.http import route, request, content_disposition
 
-from odoo.addons.web.controllers import main
-from odoo.addons.web.controllers.main import (
-    _serialize_exception,
-)
+from odoo.addons.web.controllers import report
 from odoo.tools import html_escape
 
 
-class ReportController(main.ReportController):
+class ReportController(report.ReportController):
 
     MIMETYPES = {
         'txt': 'text/plain',
@@ -101,7 +98,7 @@ class ReportController(main.ReportController):
             #         reportname, converter='aeroo', **dict(data))
             return response
         except Exception as e:
-            se = _serialize_exception(e)
+            se = http.serialize_exception(e)
             error = {
                 'code': 200,
                 'message': "Odoo Server Error",

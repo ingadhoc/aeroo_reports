@@ -17,24 +17,6 @@ async function aerooReportHandler (action, options, env){
             url_ += "?options=" + encodeURIComponent(JSON.stringify(cloned_action.data));
             url_ += "&context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
         }
-        // esto es mas parecido a en otros modulos pero hace que, por ej, nuestro reporte de deuda o de catalogo, donde mandamos
-        // variables por contexto, dejen de funcionar
-        // if (action.data && JSON.stringify(action.data) !== "{}") {
-        //     const options_ = encodeURIComponent(JSON.stringify(action.data));
-        //     const context_ = encodeURIComponent(JSON.stringify(actionContext));
-        //     url_ += `?options=${options_}&context=${context_}`;
-        // } else {
-        //     if (actionContext.active_ids) {
-        //         url_ += `/${actionContext.active_ids.join(",")}`;
-        //     }
-        //     if (type === "html") {
-        //         const context = encodeURIComponent(
-        //             JSON.stringify(env.services.user.context)
-        //         );
-        //         url_ += `?context=${context}`;
-        //     }
-        // }
-        // COPY actionManager._triggerDownload
         env.services.ui.block();
         try {
             await download({

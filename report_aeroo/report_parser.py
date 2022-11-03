@@ -12,6 +12,7 @@ from base64 import b64decode
 import time
 import datetime
 import base64
+import aeroolib as aeroolib
 from aeroolib.plugins.opendocument import Template, OOSerializer, _filter
 from aeroolib import __version__ as aeroolib_version
 from currency2text import supported_language
@@ -26,11 +27,11 @@ from odoo import release as odoo_release
 from odoo import api, models, fields
 from odoo import tools as tools
 from odoo.tools import file_open, frozendict
-from odoo.tools.translate import _, translate
+from odoo.tools.translate import _, translate_sql_constraint
 from odoo.tools.misc import formatLang as odoo_fl
 from odoo.tools.misc import format_date as odoo_fd
 from odoo.tools.safe_eval import safe_eval, time as safeval_time
-from odoo.modules import load_information_from_description_file
+from odoo.modules.module import load_manifest
 from odoo.tools.misc import posix_to_ldml
 from odoo.exceptions import MissingError
 # for format_datetime
@@ -269,7 +270,7 @@ class ReportAerooAbstract(models.AbstractModel):
                 'name': name,
             }
             trans_obj.create(vals)
-        return translate(self.env.cr, name, 'report', lang, source) or source
+        return translate_sql_constraint(self.env.cr, name, 'report', lang, source) or source
 
     def _asarray(self, attr, field):
         expr = "for o in objects:\n\tvalue_list.append(o.%s)" % field
@@ -496,7 +497,7 @@ class ReportAerooAbstract(models.AbstractModel):
         user_name = self.env.user.name
         ser.add_creation_user(user_name)
 
-        module_info = load_information_from_description_file('report_aeroo')
+        module_info = load_manifest('report_aeroo')
         version = module_info['version']
         ser.add_generator_info('Aeroo Lib/%s Aeroo Reports/%s'
                                % (aeroolib_version, version))

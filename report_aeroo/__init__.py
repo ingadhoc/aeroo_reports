@@ -20,6 +20,7 @@ from . import models
 from . import report_parser
 
 from . import report
+from . import demo
 
 from . import wizard
 #from . import translate

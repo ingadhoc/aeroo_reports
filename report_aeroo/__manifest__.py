@@ -6,7 +6,7 @@
 
 {
     'name': 'Aeroo Reports',
-    'version': "15.0.1.0.0",
+    'version': "16.0.1.0.0",
     'category': 'Generic Modules/Aeroo Reports',
     'summary': 'Enterprise grade reporting solution',
     'author': 'Alistek',
@@ -17,7 +17,8 @@
              "views/report_view.xml",
              "data/report_aeroo_data.xml",
              "wizard/installer.xml",
-             "security/ir.model.access.csv"
+             "security/ir.model.access.csv",
+             "demo/report_sample.xml",
              ],
     'assets': {
         'web.assets_backend': [
@@ -25,7 +26,7 @@
            ],
     },
     "license": "GPL-3 or any later version",
-    'installable': False,
+    'installable': True,
     'active': False,
     'application': True,
     'auto_install': False,
