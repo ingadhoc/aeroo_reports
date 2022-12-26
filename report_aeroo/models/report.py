@@ -9,10 +9,9 @@ import binascii
 from base64 import b64decode
 import logging
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.tools import file_open
-from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -223,13 +222,6 @@ class ReportAeroo(models.Model):
     def onchange_in_format(self):
         # TODO get first available format
         self.out_format = False
-
-    def unlink(self):
-        trans_obj = self.env['ir.translation']
-        trans_ids = trans_obj.search(
-            [('type', '=', 'report'), ('res_id', 'in', self.ids)])
-        trans_ids.unlink()
-        return super(ReportAeroo, self).unlink()
 
     def write(self, vals):
 

@@ -23,5 +23,3 @@ from . import report
 from . import demo
 
 from . import wizard
-#from . import translate
-

@@ -24,10 +24,9 @@ from io import BytesIO
 from genshi.template.eval import StrictLookup
 
 from odoo import release as odoo_release
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 from odoo import tools as tools
-from odoo.tools import file_open, frozendict
-from odoo.tools.translate import _, translate_sql_constraint
+from odoo.tools import frozendict
 from odoo.tools.misc import formatLang as odoo_fl
 from odoo.tools.misc import format_date as odoo_fd
 from odoo.tools.safe_eval import safe_eval, time as safeval_time
@@ -251,27 +250,6 @@ class ReportAerooAbstract(models.AbstractModel):
         else:
             return obj.get_metadata()[0]
 
-    def _translate_text(self, source):
-        trans_obj = self.env['ir.translation']
-        lang = self._get_lang()
-        name = 'ir.actions.report'
-        conds = [('res_id', '=', self.env.report.id),
-                 ('type', '=', 'report'),
-                 ('src', '=', source),
-                 ('lang', '=', lang)
-                 ]
-        trans = trans_obj.search(conds)
-        if not trans:
-            vals = {
-                'src': source,
-                'type': 'report',
-                'lang': self._get_lang(),
-                'res_id': self.env.report.id,
-                'name': name,
-            }
-            trans_obj.create(vals)
-        return translate_sql_constraint(self.env.cr, name, 'report', lang, source) or source
-
     def _asarray(self, attr, field):
         expr = "for o in objects:\n\tvalue_list.append(o.%s)" % field
         localspace = {'objects': attr, 'value_list': []}
@@ -443,8 +421,6 @@ class ReportAerooAbstract(models.AbstractModel):
             'getLang':  self._get_lang,
             'setLang':  self._set_lang,
             'formatLang': self._format_lang,
-            '_': self._translate_text,
-            'gettext': self._translate_text,
             'test':     self.test,
             'fields':     fields,
             'company':     self.env.company,
