@@ -57,20 +57,6 @@
       </field>
     </record>
 
-    <record id="action_docs_config_installer" model="ir.actions.act_window">
-      <field name="name">Aeroo DOCS connection</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">docs_config.installer</field>
-      <field name="view_id" ref="view_docs_config_installer"/>
-      <field name="view_mode">form</field>
-      <field name="target">new</field>
-    </record>
-
-    <record id="docs_config_installer_todo" model="ir.actions.todo">
-        <field name="action_id" ref="action_docs_config_installer"/>
-        <field name="sequence">3</field>
-    </record>
-
     <record id="action_docs_config_wizard" model="ir.actions.act_window">
       <field name="name">Aeroo DOCS connection</field>
       <field name="type">ir.actions.act_window</field>
