@@ -5,6 +5,7 @@ import json
 import mimetypes
 from werkzeug.urls import url_decode
 
+from odoo import http
 from odoo.http import route, request, content_disposition
 
 from odoo.addons.web.controllers import report
