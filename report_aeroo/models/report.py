@@ -60,10 +60,11 @@ class ReportAeroo(models.Model):
     _inherit = 'ir.actions.report'
 
     @api.model
-    def _render_aeroo(self, docids, data):
-        report_parser = self.env[self.parser_model or 'report.report_aeroo.abstract']
+    def _render_aeroo(self, report_ref, docids, data=None):
+        report = self._get_report(report_ref)
+        report_parser = self.env[report.parser_model or 'report.report_aeroo.abstract']
         return report_parser.with_context(
-            active_model=self.model, report_name=self.report_name).aeroo_report(docids, data)
+            active_model=report.model, report_name=report.report_name).aeroo_report(docids, data)
 
     @api.model
     def _get_report_from_name(self, report_name):

@@ -18,8 +18,7 @@ class IrActionsReport(models.Model):
         from server
         """
         if self.report_type == 'aeroo':
-            document, doc_format = self.with_context(must_skip_send_to_printer=True)._render_aeroo(
-                    record_ids, data=data)
+            document, doc_format = self.with_context(must_skip_send_to_printer=True)._render_aeroo(self.report_name, record_ids, data=data)
             behaviour = self.behaviour()
             printer = behaviour.pop('printer', None)
             if not printer:
