@@ -490,7 +490,7 @@ class ReportAerooAbstract(models.AbstractModel):
         # Add metadata
         ser = basic.Serializer
         model_obj = self.env.get('ir.model')
-        model_name = model_obj.search([('model', '=', self.env.model)])[0].name
+        model_name = model_obj.sudo().search([('model', '=', self.env.model)])[0].name
         ser.add_title(model_name)
 
         user_name = self.env.user.name
