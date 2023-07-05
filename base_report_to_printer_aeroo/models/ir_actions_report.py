@@ -35,7 +35,7 @@ class IrActionsReport(models.Model):
         return super(IrActionsReport, self).print_document(
             record_ids, data=data)
 
-    def _render_qweb_pdf(self, res_ids=None, data=None):
+    def _render_qweb_pdf(self, report_ref, res_ids=None, data=None):
         """ This method is called directly from another places in odoo like
         portal, website, pos, email template attachments, etc.
 
@@ -49,4 +49,4 @@ class IrActionsReport(models.Model):
         # interesante hacerlo para pos."
         return super(IrActionsReport, self.with_context(
             must_skip_send_to_printer=True))._render_qweb_pdf(
-            res_ids=res_ids, data=data)
+            report_ref=report_ref, res_ids=res_ids, data=data)
