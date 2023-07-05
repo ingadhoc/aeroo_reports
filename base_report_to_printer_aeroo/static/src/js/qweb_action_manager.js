@@ -2,7 +2,6 @@
 import {registry} from "@web/core/registry";
 
 async function cupsReportActionHandler(action, options, env) {
-    debugger;
     if (action.report_type === "aeroo") {
         const orm = env.services.orm;
 

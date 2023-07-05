@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Report to print Aeroo',
-    'version': "15.0.1.1.0",
+    'version': "16.0.1.0.0",
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'author': 'ADHOC SA',
@@ -35,6 +35,6 @@
             'base_report_to_printer_aeroo/static/src/js/qweb_action_manager.js',
         ],
     },
-    'installable': False,
+    'installable': True,
     'auto_install': True,
 }
