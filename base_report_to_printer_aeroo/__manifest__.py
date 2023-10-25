@@ -35,6 +35,6 @@
             'base_report_to_printer_aeroo/static/src/js/qweb_action_manager.js',
         ],
     },
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }
