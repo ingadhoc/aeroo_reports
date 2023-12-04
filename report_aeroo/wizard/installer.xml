@@ -12,13 +12,13 @@
                 </form>
                 <footer position="replace">
                     <footer>
-                        <button name="check" type="object" string="Apply and Test" class="btn-primary" states="init"/>
-                        <button name="action_next" type="object" string="Finish" class="btn-primary" states="done"/>
+                        <button name="check" type="object" string="Apply and Test" class="btn-primary" invisible="state != 'init'"/>
+                        <button name="action_next" type="object" string="Finish" class="btn-primary" invisible="state != 'done'"/>
                         <button special="cancel" string="Close" class="btn-default"/>
                     </footer>
                 </footer>
                 <separator position="replace">
-                  <field name="state" invisible="1" attrs="{'readonly':True, 'invisible': True}"/>
+                  <field name="state" invisible="1" readonly="True"/>
                   <group col="4" colspan="4" expand="1">
                     <group colspan="1" expand="0">
                       <field name="config_logo" widget="image" nolabel="1" colspan="2"/>
@@ -28,25 +28,25 @@
                         Configure Aeroo Reports connection to DOCS service and test document conversion.
                       </p>
                       <newline/>
-                      <group states="init" colspan="2" col="4">
+                      <group invisible="state != 'init'" colspan="2" col="4">
                           <group colspan="4" col="4">
                               <field name="enabled"/>
                               <group colspan="4">
-                                  <field name="host" attrs="{'readonly': [('enabled','=',False)]}"/>
-                                  <field name="port" attrs="{'readonly': [('enabled','=',False)]}"/>
+                                  <field name="host" readonly="not enabled"/>
+                                  <field name="port" readonly="not enabled"/>
                               </group>
-                              <field name="auth_type" attrs="{'readonly': [('enabled','=',False)]}"/>
-                              <group colspan="4" attrs="{'invisible': [('auth_type','=',False)]}">
-                                <field name="username" attrs="{'required': [('auth_type','=','simple')], 'readonly': [('enabled','=',False)]}"/>
-                                <field name="password" password="True" attrs="{'required': [('auth_type','=','simple')], 'readonly': [('enabled','=',False)]}"/>
+                              <field name="auth_type" readonly="not enabled"/>
+                              <group colspan="4" invisible="not auth_type">
+                                <field name="username" readonly="not enabled" required="auth_type == 'simple'"/>
+                                <field name="password" password="True" readonly="not enabled" required="auth_type == 'simple'"/>
                               </group>
                           </group>
                           <separator colspan="4"/>
                       </group>
-                      <group colspan="4" states="error,done">
+                      <group colspan="4" invisible="state not in ('error', 'done')">
                           <field name="msg" colspan="4" nolabel="1"/>
                       </group>
-                      <group colspan="4" states="error">
+                      <group colspan="4" invisible="state != 'error'">
                           <separator string="Details" colspan="4"/>
                           <field name="error_details" colspan="4" nolabel="1"/>
                       </group>
