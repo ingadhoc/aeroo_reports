@@ -4,7 +4,8 @@ import {download} from "@web/core/network/download"
 import {registry} from "@web/core/registry"
 
 async function aerooReportHandler (action, options, env){
-    let cloned_action = _.clone(action);
+    // let cloned_action = _.clone(action);
+    let cloned_action = Object.assign(action);
     if (action.report_type === "aeroo"){
         const type = "aeroo";
         let url_ = `/report/${type}/${action.report_name}`;

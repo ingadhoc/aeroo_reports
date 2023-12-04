@@ -4,16 +4,16 @@
 #
 ################################################################################
 
-from odoo.exceptions import except_orm
+from odoo.exceptions import UserError
 
-class ConnectionError(except_orm):
+class ConnectionError(UserError):
     """ Basic connection error.
     Example: When try to connect Aeroo DOCS and connection fails."""
     def __init__(self, msg):
         super(ConnectionError, self).__init__(msg)
         
         
-class ProgrammingError(except_orm):
+class ProgrammingError(UserError):
     """ Basic programming error.
     Example: When python code can not be compiled due to some error."""
     def __init__(self, msg):

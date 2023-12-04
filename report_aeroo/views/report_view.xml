@@ -8,32 +8,32 @@
             <field name="inherit_id" ref="base.act_report_xml_view"/>
 			<field name="arch" type="xml">
                 <notebook>
-                    <page string="Aeroo Configuration" attrs="{'invisible':[('report_type','!=','aeroo')]}">
+                    <page string="Aeroo Configuration" invisible="report_type != 'aeroo'">
                         <group>
                             <group string="Template">
                                 <field name="tml_source"/>
-                                <field name="report_data" attrs="{'invisible': [('tml_source','&lt;&gt;','database')],'required': [('tml_source','=','database'), ('report_type','=','aeroo')]}"/>
-                                <field name="report_file" string="Template Path" attrs="{'invisible': [('tml_source','&lt;&gt;','file')],'required': [('tml_source','=','file'), ('report_type','=','aeroo')]}"/>
-                                <field name="copies" attrs="{'invisible': [('report_name','in',['printscreen.list'])]}"/>
-                                <field name="copies_intercalate" attrs="{'invisible': [('report_name','in',['printscreen.list'])]}"/>
+                                <field name="report_data" invisible="tml_source != 'database'" required="tml_source == 'database' and report_type == 'aeroo'"/>
+                                <field name="report_file" string="Template Path" invisible="tml_source != 'file'" required="tml_source == 'file' and report_type == 'aeroo'"/>
+                                <field name="copies" invisible="report_name == 'printscreen.list'"/>
+                                <field name="copies_intercalate" invisible="report_name == 'printscreen.list'"/>
                                 <!-- TODO <field name="report_wizard" attrs="{'invisible': [('report_name','in',['printscreen.list'])]}"/> -->
                                 <field name="type" invisible="1"/>
-                                <field name="in_format" attrs="{'required':[('report_type','=','aeroo'), ('report_type','=','aeroo')]}"/>
-                                <field name="out_format" attrs="{'required':[('report_type','=','aeroo'), ('report_type','=','aeroo')]}" domain="[('compatible_types','=',in_format)]"/>
+                                <field name="in_format" required="report_type == 'aeroo' and report_type == 'aeroo'"/>
+                                <field name="out_format" required="report_type == 'aeroo' and report_type == 'aeroo'" domain="[('compatible_types','=',in_format)]"/>
                             </group>
                             <group string="Stylesheet">
                                 <field name="styles_mode"/>
-                                <field name="stylesheet_id" attrs="{'invisible': [('styles_mode','&lt;&gt;','specified')]}"/>
-                                <field name="charset" attrs="{'invisible': [('in_format','&lt;&gt;','genshi-raw')]}"/>
+                                <field name="stylesheet_id" invisible="styles_mode != 'specified'"/>
+                                <field name="charset" invisible="in_format != 'genshi-raw'"/>
                             </group>
                             <group string="Advanced">
                                 <field name="parser_model"/>
                                 <field name="process_sep"/>
                                 <field name="replace_report_id" domain="[('model','=',model),('id','&lt;&gt;',active_id)]"/>
-                                <field name="preload_mode" attrs="{'invisible': ['|',('in_format','=','genshi-raw'),('tml_source','=','parser')]}"/>
-                                <field name="disable_fallback" attrs="{'invisible': [('in_format','=','genshi-raw')]}"/>
+                                <field name="preload_mode" invisible="in_format == 'genshi-raw' or tml_source == 'parser'"/>
+                                <field name="disable_fallback" invisible="in_format == 'genshi-raw'"/>
                                 <field name="deferred"/>
-                                <field name="deferred_limit" attrs="{'invisible':['|',('deferred','=','off'),('deferred','=',False)]}"/>
+                                <field name="deferred_limit" invisible="deferred == 'off' or not deferred"/>
                                 <newline/>
                             </group>
                         </group>
