@@ -394,7 +394,7 @@ class ReportAerooAbstract(models.AbstractModel):
         return template
 
     def get_stylesheet(self, report):
-        style_io = None
+        style_io = styles = None
         if report.styles_mode != 'default':
             if report.styles_mode == 'global':
                 styles = self.env.company.stylesheet_id
