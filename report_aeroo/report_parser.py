@@ -444,6 +444,8 @@ class ReportAerooAbstract(models.AbstractModel):
                 raise MissingError(
                     _("No Aeroo Reports template filename provided"))
             file_data = report._read_template()
+        elif report.tml_source == 'attachment':
+            file_data = b64decode(report.attachment_id.datas)
         else:
             rec_id = ctx.get('active_id', data.get('id')) or data.get('id')
             file_data = self.get_other_template(self.env.model, rec_id)

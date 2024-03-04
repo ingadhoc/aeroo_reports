@@ -14,6 +14,7 @@
                                 <field name="tml_source"/>
                                 <field name="report_data" attrs="{'invisible': [('tml_source','&lt;&gt;','database')],'required': [('tml_source','=','database'), ('report_type','=','aeroo')]}"/>
                                 <field name="report_file" string="Template Path" attrs="{'invisible': [('tml_source','&lt;&gt;','file')],'required': [('tml_source','=','file'), ('report_type','=','aeroo')]}"/>
+                                <field name="attachment_id" string="Attachment" attrs="{'invisible': [('tml_source','&lt;&gt;','attachment')], 'required': [('tml_source','=','attachment'), ('report_type','=','aeroo')]}" context="{'default_res_model': 'report.aeroo'}"/>
                                 <field name="copies" attrs="{'invisible': [('report_name','in',['printscreen.list'])]}"/>
                                 <field name="copies_intercalate" attrs="{'invisible': [('report_name','in',['printscreen.list'])]}"/>
                                 <!-- TODO <field name="report_wizard" attrs="{'invisible': [('report_name','in',['printscreen.list'])]}"/> -->
