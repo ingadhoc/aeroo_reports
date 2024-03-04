@@ -159,7 +159,9 @@ class ReportAeroo(models.Model):
         ('database','Database'),
         ('file','File'),
         ('parser','Parser'),
+        ('attachment','Attachment'),
         ], string='Template source', default='database', index=True)
+    attachment_id = fields.Many2one('ir.attachment', domain=[("res_model", "=", "report.aeroo")], ondelete='set null')
     parser_model = fields.Char(
         help='Optional model to be used as parser, if not configured "report.report_aeroo.abstract" will be used')
     report_type = fields.Selection(selection_add=[('aeroo', _('Aeroo Reports'))], ondelete={'aeroo': 'cascade'})
