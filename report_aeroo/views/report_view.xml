@@ -14,7 +14,8 @@
                                 <field name="tml_source"/>
                                 <field name="report_data" invisible="tml_source != 'database'" required="tml_source == 'database' and report_type == 'aeroo'"/>
                                 <field name="report_file" string="Template Path" invisible="tml_source != 'file'" required="tml_source == 'file' and report_type == 'aeroo'"/>
-                                <field name="attachment_id" string="Attachment" invisible= "tml_source != 'attachment'" required="tml_source == 'attachment' and report_type == 'aeroo'" context="{'default_res_model': 'report.aeroo'}"/>
+                                <!-- Add option {'create': True} just in case the database has the module web_m2x_options installed -->
+                                <field name="attachment_id" string="Attachment" invisible= "tml_source != 'attachment'" required="tml_source == 'attachment' and report_type == 'aeroo'" context="{'default_res_model': 'report.aeroo'}" options="{'create': True}"/>
                                 <field name="copies" invisible="report_name == 'printscreen.list'"/>
                                 <field name="copies_intercalate" invisible="report_name == 'printscreen.list'"/>
                                 <!-- TODO <field name="report_wizard" attrs="{'invisible': [('report_name','in',['printscreen.list'])]}"/> -->
