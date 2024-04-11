@@ -32,6 +32,7 @@ from odoo.tools.misc import format_date as odoo_fd
 from odoo.tools.safe_eval import safe_eval, time as safeval_time
 from odoo.modules.module import load_manifest
 from odoo.tools.misc import posix_to_ldml
+from odoo.tools.misc import get_lang
 from odoo.exceptions import MissingError
 # for format_datetime
 from odoo.tools.misc import DATE_LENGTH
@@ -347,7 +348,8 @@ class ReportAerooAbstract(models.AbstractModel):
         lctx = self.env.localcontext
         lang = lctx['lang']
         objects = None
-        if self.env.context['lang'] != lang:
+        env_lang = self.env.user.lang or get_lang(self.env).code
+        if env_lang != lang:
             ctx_copy = dict(self.env.context)
             ctx_copy.update(lang=lang)
             objects = self.env.get(model).with_context(**ctx_copy).browse(docids)
