@@ -7,11 +7,12 @@
 
 import logging
 from io import BytesIO
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from base64 import b64decode
 import time
 import datetime
 import base64
+import binascii
 import aeroolib as aeroolib
 from aeroolib.plugins.opendocument import Template, OOSerializer, _filter
 from aeroolib import __version__ as aeroolib_version
@@ -176,8 +177,15 @@ class ReportAerooAbstract(models.AbstractModel):
         ##############################################
         if not field_value:
             return BytesIO(), 'image/png'
-        field_value = b64decode(field_value)
-        tf = BytesIO(field_value)
+        try:
+            field_value = b64decode(field_value)
+            tf = BytesIO(field_value)
+            tf.seek(0)
+            im = Image.open(tf)
+            im.verify()  # Verifica que el archivo es una imagen válida
+        except (binascii.Error, UnidentifiedImageError) as e:
+            _logger.exception("Invalid image data")
+            return BytesIO(), 'image/png'
         tf.seek(0)
         im = Image.open(tf)
         format = im.format.lower()
@@ -326,7 +334,7 @@ class ReportAerooAbstract(models.AbstractModel):
             # obj.invalidate_cache()
 
     def _format_lang(
-            self, value, digits=None, grouping=True, monetary=False, dp=False,
+            self, value, digits=2, grouping=True, monetary=False, dp=False,
             currency_obj=False, date=False, date_time=False, lang_code=False, date_format=False):
         """ We add date and date_time for backwards compatibility. Odoo has
         split the method in two (formatlang and format_date)
