@@ -3,15 +3,15 @@
 # 	* report_aeroo
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-16 13:23+0000\n"
+"POT-Creation-Date: 2024-08-05 12:43+0000\n"
 "PO-Revision-Date: 2023-12-26 21:38+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,6 +97,13 @@ msgstr ""
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
 msgid "Apply and Test"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__attachment_id
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__attachment
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
+msgid "Attachment"
 msgstr ""
 
 #. module: report_aeroo
@@ -572,7 +579,7 @@ msgid ""
 "downloaded by the user."
 msgstr ""
 "El tipo de informe que se renderizará, cada uno con su propio método de "
-"renderización. HTML indica que el informe se abrirá directamente en el "
+"visualización. HTML indica que el informe se abrirá directamente en el "
 "navegador, PDF indica que el informe se renderizará usando Wkhtmltopdf y "
 "luego será descargado por el usuario."
 
