@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-################################################################################
+###############################################################################
 #
 #  This file is part of Aeroo Reports software - for license refer LICENSE file
 #
-################################################################################
+###############################################################################
 
 import logging
 from io import BytesIO
@@ -42,17 +42,23 @@ import pytz
 import datetime
 
 
-def format_datetime(env, value, lang_code=False, date_format=False, tz='America/Argentina/Buenos_Aires'):
+def format_datetime(
+        env,
+        value,
+        lang_code=False,
+        date_format=False,
+        tz='America/Argentina/Buenos_Aires'):
     '''
-        This is an adaptation of odoo format_date method but to format datetimes
+        This is an adaptation of odoo format_date method but to format
+        datetimes
         TODO we should move it to another plase or make it simpler
 
         :param env: an environment.
         :param date, datetime or string value: the date to format.
-        :param string lang_code: the lang code, if not specified it is extracted from the
-            environment context.
-        :param string date_format: the format or the date (LDML format), if not specified the
-            default format of the lang.
+        :param string lang_code: the lang code, if not specified it is
+            extracted from the environment context.
+        :param string date_format: the format or the date (LDML format),
+          if not specified the default format of the lang.
         :return: date formatted in the specified format.
         :rtype: string
     '''
@@ -68,12 +74,19 @@ def format_datetime(env, value, lang_code=False, date_format=False, tz='America/
         else:
             value = fields.Datetime.from_string(value)
 
-    lang = env['res.lang']._lang_get(lang_code or env.context.get('lang') or 'en_US')
+    lang = env['res.lang']._lang_get(
+        lang_code or env.context.get('lang') or 'en_US')
     locale = babel.Locale.parse(lang.code)
     if not date_format:
-        date_format = posix_to_ldml('%s %s' % (lang.date_format, lang.time_format), locale=locale)
+        date_format = posix_to_ldml(
+            '%s %s' % (lang.date_format, lang.time_format),
+            locale=locale)
 
-    return babel.dates.format_datetime(value, format=date_format, locale=locale, tzinfo=tz)
+    return babel.dates.format_datetime(
+        value,
+        format=date_format,
+        locale=locale,
+        tzinfo=tz)
 
 
 _logger = logging.getLogger(__name__)
@@ -96,7 +109,7 @@ class ReportAerooAbstract(models.AbstractModel):
             return val.name_get()[0][1]
         return _filter(val)
 
-    # Extra Functions ==========================================================
+    # Extra Functions ==================================================
     def myset(self, pair):
         if isinstance(pair, dict):
             self.env.localcontext['storage'].update(pair)
@@ -161,8 +174,16 @@ class ReportAerooAbstract(models.AbstractModel):
         y = len(localspace['value_list'])
         return float(x)/float(y)
 
-    def _asimage(self, field_value, rotate=None, size_x=None, size_y=None, dpix=96, dpiy=96,
-                 uom='px', hold_ratio=False):
+    def _asimage(
+            self,
+            field_value,
+            rotate=None,
+            size_x=None,
+            size_y=None,
+            dpix=96,
+            dpiy=96,
+            uom='px',
+            hold_ratio=False):
         """
         Prepare image for inserting into OpenOffice.org document
         """
@@ -183,7 +204,7 @@ class ReportAerooAbstract(models.AbstractModel):
             tf.seek(0)
             im = Image.open(tf)
             im.verify()  # Verifica que el archivo es una imagen válida
-        except (binascii.Error, UnidentifiedImageError) as e:
+        except (binascii.Error, UnidentifiedImageError):
             _logger.exception("Invalid image data")
             return BytesIO(), 'image/png'
         tf.seek(0)
@@ -194,11 +215,11 @@ class ReportAerooAbstract(models.AbstractModel):
         # dpi_x, dpi_y = map(float, im.info.get('dpi', (96, 96)))
         dpi_x, dpi_y = map(float, (dpix, dpiy))
         try:
-            if rotate != None:
+            if rotate is not None:
                 im = im.rotate(int(rotate))
                 tf.seek(0)
                 im.save(tf, format)
-        except Exception as e:
+        except Exception:
             _logger.exception("Error in '_asimage' method")
 
         if hold_ratio:
@@ -247,7 +268,7 @@ class ReportAerooAbstract(models.AbstractModel):
                 elif kind == 'items':
                     return val
                 return ''
-            except Exception as e:
+            except Exception:
                 _logger.exception(
                     "Error in '_get_selection_item' method", exc_info=True)
                 return ''
@@ -259,13 +280,7 @@ class ReportAerooAbstract(models.AbstractModel):
         else:
             return obj.get_metadata()[0]
 
-    def _asarray(self, attr, field):
-        expr = "for o in objects:\n\tvalue_list.append(o.%s)" % field
-        localspace = {'objects': attr, 'value_list': []}
-        exec(expr, localspace)
-        return localspace['value_list']
-
-    # / Extra Functions ========================================================
+    # / Extra Functions ======================================================
 
     def get_docs_conn(self):
         icp = self.env.get('ir.config_parameter').sudo()
@@ -335,17 +350,23 @@ class ReportAerooAbstract(models.AbstractModel):
 
     def _format_lang(
             self, value, digits=2, grouping=True, monetary=False, dp=False,
-            currency_obj=False, date=False, date_time=False, lang_code=False, date_format=False):
+            currency_obj=False, date=False, date_time=False, lang_code=False,
+            date_format=False):
         """ We add date and date_time for backwards compatibility. Odoo has
         split the method in two (formatlang and format_date)
         """
         if date:
             # we force the timezone of the user if the value is datetime
             if isinstance(value, (datetime.datetime)):
-                value = value.astimezone(pytz.timezone(self.env.user.tz or 'UTC'))
-            return odoo_fd(self.env, value, lang_code=lang_code, date_format=date_format)
+                value = value.astimezone(
+                    pytz.timezone(self.env.user.tz or 'UTC')
+                )
+            return odoo_fd(self.env, value, lang_code=lang_code,
+                           date_format=date_format)
         elif date_time:
-            return format_datetime(self.env, value, lang_code=lang_code, date_format=date_format, tz=self.env.user.tz)
+            return format_datetime(self.env, value, lang_code=lang_code,
+                                   date_format=date_format,
+                                   tz=self.env.user.tz)
         return odoo_fl(
             self.env, value, digits, grouping, monetary, dp, currency_obj)
 
@@ -360,7 +381,8 @@ class ReportAerooAbstract(models.AbstractModel):
         if env_lang != lang:
             ctx_copy = dict(self.env.context)
             ctx_copy.update(lang=lang)
-            objects = self.env.get(model).with_context(**ctx_copy).browse(docids)
+            objects = self.env.get(model).with_context(**ctx_copy)\
+                .browse(docids)
         else:
             objects = self.env.get(model).browse(docids)
         lctx['objects'] = objects
@@ -400,9 +422,10 @@ class ReportAerooAbstract(models.AbstractModel):
         self.env.model = ctx.get('active_model', False)
         self.env.report = report
 
-        #=======================================================================
+        # ====================================================================
         def barcode(
-                barcode_type, value, width=600, height=100, dpi_x=96, dpi_y=96, humanreadable=0):
+                barcode_type, value, width=600, height=100,
+                dpi_x=96, dpi_y=96, humanreadable=0):
             # TODO check that asimage and barcode both accepts width and height
             img = self.env['ir.actions.report'].barcode(
                 barcode_type, value, width=width, height=height,
@@ -462,7 +485,9 @@ class ReportAerooAbstract(models.AbstractModel):
 
         if not file_data:
             # TODO log report ID etc.
-            raise MissingError(_("Aeroo Reports could'nt find report template"))
+            raise MissingError(
+                _("Aeroo Reports could'nt find report template")
+            )
 
         template_io = BytesIO(file_data)
         if report.styles_mode == 'default':
@@ -479,7 +504,8 @@ class ReportAerooAbstract(models.AbstractModel):
         # Add metadata
         ser = basic.Serializer
         model_obj = self.env.get('ir.model')
-        model_name = model_obj.sudo().search([('model', '=', self.env.model)])[0].name
+        model_name = model_obj.sudo().search(
+            [('model', '=', self.env.model)])[0].name
         ser.add_title(model_name)
 
         user_name = self.env.user.name
@@ -495,9 +521,11 @@ class ReportAerooAbstract(models.AbstractModel):
         ser.add_creation_date(time.strftime('%Y-%m-%dT%H:%M:%S'))
 
         file_data = basic.generate(**self.env.localcontext).render().getvalue()
-        #=======================================================================
+        # ======================================================================
         code = mime_dict[report.in_format]
-        #_logger.info("End process %s (%s), elapsed time: %s" % (self.name, self.env.model, time.time() - aeroo_print.start_time), logging.INFO) # debug mode
+        # _logger.info("End process %s (%s), elapsed time: %s" % (
+        #     self.name, self.env.model, time.time() - aeroo_print.start_time),
+        #     logging.INFO)  # debug mode
 
         return file_data, code
 
@@ -506,7 +534,7 @@ class ReportAerooAbstract(models.AbstractModel):
 
     def single_report(self, docids, data, report, ctx):
         code = report.out_format.code
-        ext = mime_dict[code]
+        # ext = mime_dict[code]
         if code.startswith('oo-'):
             return self.complex_report(docids, data, report, ctx)
         elif code == 'genshi-raw':
@@ -521,18 +549,21 @@ class ReportAerooAbstract(models.AbstractModel):
         if report.print_report_name and not len(docids) > 1:
             obj = self.env[report.model].browse(docids)
             print_report_name = safe_eval(
-                report.print_report_name, {'object': obj, 'time': safeval_time})
+                report.print_report_name,
+                {'object': obj, 'time': safeval_time})
 
         if report.in_format == code:
             filename = '%s.%s' % (
                 print_report_name, mime_dict[report.in_format])
-            return return_filename and (result[0], result[1], filename) or (result[0], result[1])
+            return return_filename and (result[0], result[1], filename) or \
+                (result[0], result[1])
         else:
             try:
                 result = self._generate_doc(result[0], report)
                 filename = '%s.%s' % (
                     print_report_name, mime_dict[report.out_format.code])
-                return return_filename and (result, mime_dict[code], filename) or (result, mime_dict[code])
+                return return_filename and (result, mime_dict[code], filename)\
+                    or (result, mime_dict[code])
             except Exception as e:
                 _logger.exception(_("Aeroo DOCS error!\n%s") % str(e))
                 if report.disable_fallback:
@@ -541,14 +572,19 @@ class ReportAerooAbstract(models.AbstractModel):
                     raise ConnectionError(_('Could not connect Aeroo DOCS!'))
         # only if fallback
         filename = '%s.%s' % (print_report_name, mime_dict[report.in_format])
-        return return_filename and (result[0], result[1], filename) or (result[0], result[1])
+        return return_filename and (result[0], result[1], filename) or \
+            (result[0], result[1])
 
     @api.model
     def aeroo_report(self, docids, data):
         report_name = self._context.get('report_name')
-        report = self.env['ir.actions.report']._get_report_from_name(report_name)
+        report = self.env['ir.actions.report']._get_report_from_name(
+            report_name
+        )
         # TODO
-        #_logger.info("Start Aeroo Reports %s (%s)" % (name, ctx.get('active_model')), logging.INFO) # debug mode
+        # _logger.info("Start Aeroo Reports %s (%s)" % (
+        #     name, ctx.get('active_model')),
+        #     logging.INFO)  # debug mode
 
         if 'tz' not in self._context:
             self = self.with_context(tz=self.env.user.tz)
@@ -582,7 +618,9 @@ class ReportAerooAbstract(models.AbstractModel):
         else:
             res = self.assemble_tasks(docids, data, report, self._context)
         # TODO
-        #_logger.info("End Aeroo Reports %s (%s), total elapsed time: %s" % (name, model), time() - aeroo_print.start_total_time), logging.INFO) # debug mode
+        # _logger.info("End Aeroo Reports %s (%s), total elapsed time: %s" %
+        #              (name, model, time() - aeroo_print.start_total_time),
+        #              logging.INFO)  # debug mode
 
         return res
 
