@@ -111,7 +111,12 @@ class DOCSConnection():
 
     def convert(self, data=False, identifier=False, in_mime=False, out_mime=False):
         payload = self._initpack('convert')
-        payload['params'].update({'identifier': identifier})
+        if identifier:
+            payload['params'].update({'identifier': identifier})
+        elif data:
+            payload['params'].update({'data': b64encode(data).decode('utf8')})
+        else:
+            raise ServerException('Data or identifier must be set')
         if in_mime:
             payload['params'].update({'in_mime': in_mime})
         if out_mime:
