@@ -296,14 +296,19 @@ class ReportAerooAbstract(models.AbstractModel):
 
     def _generate_doc(self, data, report):
         docs = self.get_docs_conn()
-        token = docs.upload(data)
+        # token = docs.upload(data)
         if report.out_format.code == 'oo-dbf':
-            data = docs.convert(identifier=token)  # TODO What format?
+            data = docs.convert(
+                # identifier=token
+                data=data
+            )  # TODO What format?
         else:
-            data = docs.convert(identifier=token,
-                                out_mime=mime_dict[report.out_format.code],
-                                in_mime=mime_dict[report.in_format]
-                                )
+            data = docs.convert(
+                # identifier=token,
+                data=data,
+                out_mime=mime_dict[report.out_format.code],
+                in_mime=mime_dict[report.in_format]
+            )
 
         # TODO this copies method could go to a generic module because it just
         # manipulates the outgoing pdf report
