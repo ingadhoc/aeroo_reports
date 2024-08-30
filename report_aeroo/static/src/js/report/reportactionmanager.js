@@ -46,4 +46,4 @@ async function aerooReportHandler (action, options, env){
     }
 }
 
-registry.category("ir.actions.report handlers").add("aeroo_handler", aerooReportHandler);
+registry.category("ir.actions.report handlers").add("aeroo_handler", aerooReportHandler, { sequence: 99 });
