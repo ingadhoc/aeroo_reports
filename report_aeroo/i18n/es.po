@@ -4,14 +4,16 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
+# JoseKeh, 2024
+# Matias Velazquez, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-05 12:43+0000\n"
+"POT-Creation-Date: 2024-09-26 14:46+0000\n"
 "PO-Revision-Date: 2023-12-26 21:38+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
+"Last-Translator: Matias Velazquez, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +24,7 @@ msgstr ""
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer___logo_image
 msgid " Logo Image"
-msgstr ""
+msgstr "Logotipo"
 
 #. module: report_aeroo
 #. odoo-python
@@ -30,28 +32,28 @@ msgstr ""
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__deferred__adaptive
 #, python-format
 msgid "Adaptive"
-msgstr ""
+msgstr "Adaptado"
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__report_wizard
 msgid "Adds a standard wizard when the report gets invoked."
-msgstr ""
+msgstr "Agrega un asistente estándar cuando se invoca el informe."
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzado"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
 msgid "Aeroo Configuration"
-msgstr ""
+msgstr "Configuración de Aeroo"
 
 #. module: report_aeroo
 #: model:ir.actions.act_window,name:report_aeroo.action_docs_config_wizard
 #: model:ir.ui.menu,name:report_aeroo.menu_docs_config_wizard
 msgid "Aeroo DOCS connection"
-msgstr ""
+msgstr "Conección de Aeroo DOCS"
 
 #. module: report_aeroo
 #. odoo-python
@@ -61,17 +63,19 @@ msgid ""
 "Aeroo DOCS error!\n"
 "%s"
 msgstr ""
+"¡Error de DOCS de Aeroo!\n"
+"%s"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_search_view
 msgid "Aeroo Report"
-msgstr ""
+msgstr "Reporte de Aeroo"
 
 #. module: report_aeroo
 #: model:ir.actions.act_window,name:report_aeroo.action_report_stylesheets
 #: model:ir.ui.menu,name:report_aeroo.menu_report_stylesheets
 msgid "Aeroo Report Stylesheets"
-msgstr ""
+msgstr "Hojas de estilo de reportes de Aeroo"
 
 #. module: report_aeroo
 #. odoo-python
@@ -79,12 +83,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__report_type__aeroo
 #, python-format
 msgid "Aeroo Reports"
-msgstr ""
+msgstr "Reportes de Aeroo"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_res_company__stylesheet_id
 msgid "Aeroo Reports Global Stylesheet"
-msgstr ""
+msgstr "Hoja de estilo global de Aeroo Reports"
 
 #. module: report_aeroo
 #. odoo-python
@@ -92,29 +96,29 @@ msgstr ""
 #: code:addons/report_aeroo/report_parser.py:0
 #, python-format
 msgid "Aeroo Reports could'nt find report template"
-msgstr ""
+msgstr "Aeroo Reports no pudo encontrar la plantilla del reporte"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
 msgid "Apply and Test"
-msgstr ""
+msgstr "Aplicar y Testear"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__attachment_id
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__attachment
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
 msgid "Attachment"
-msgstr ""
+msgstr "Adjunto"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__auth_type
 msgid "Authentication"
-msgstr ""
+msgstr "Autenticación"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__charset
 msgid "Charset"
-msgstr ""
+msgstr "Juego de Caracteres"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
@@ -124,7 +128,7 @@ msgstr "Cerrar"
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__code
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_res_company
@@ -134,7 +138,7 @@ msgstr "Compañías"
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__compatible_types
 msgid "Compatible Mime-Types"
-msgstr ""
+msgstr "Mime-Type Compatibles"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
@@ -142,30 +146,32 @@ msgid ""
 "Configure Aeroo Reports connection to DOCS service and test document "
 "conversion."
 msgstr ""
+"Configure la conexión de Aeroo Reports al servicio DOCS y pruebe la "
+"conversión de documentos."
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
 msgid "Configure DOCS service connection"
-msgstr ""
+msgstr "Configurar la conexión del servicio DOCS"
 
 #. module: report_aeroo
 #. odoo-python
 #: code:addons/report_aeroo/wizard/installer.py:0
 #, python-format
 msgid "Connection to Aeroo DOCS disabled!"
-msgstr ""
+msgstr "Conexión a Aeroo DOCS deshabilitada!"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__copies_intercalate
 msgid "Copies Intercalate"
-msgstr ""
+msgstr "Copias Intercaladas"
 
 #. module: report_aeroo
 #. odoo-python
 #: code:addons/report_aeroo/report_parser.py:0
 #, python-format
 msgid "Could not connect Aeroo DOCS!"
-msgstr ""
+msgstr "¡No se pudo conectar Aeroo DOCS!"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__create_uid
@@ -184,12 +190,12 @@ msgstr "Creado el"
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__database
 msgid "Database"
-msgstr ""
+msgstr "Base de Datos"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__deferred
 msgid "Deferred"
-msgstr ""
+msgstr "Diferido"
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__deferred
@@ -197,21 +203,23 @@ msgid ""
 "Deferred (aka Batch) reporting, for reporting on large amount               "
 "of data."
 msgstr ""
+"Informes diferidos (también conocidos como lotes) para generar informes "
+"sobre una gran cantidad de datos."
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__deferred_limit
 msgid "Deferred Records Limit"
-msgstr ""
+msgstr "Límite de registros diferidos"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__disable_fallback
 msgid "Disable Format Fallback"
-msgstr ""
+msgstr "Deshabilitar el formato alternativo"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__display_name
@@ -223,27 +231,27 @@ msgstr "Mostrar nombre"
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__done
 msgid "Done"
-msgstr ""
+msgstr "Hecho"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__enabled
 msgid "Enabled"
-msgstr ""
+msgstr "Activado"
 
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__error
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__error_details
 msgid "Error Details"
-msgstr ""
+msgstr "Detalles del Error"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__extras
 msgid "Extra options"
-msgstr ""
+msgstr "Opciones Extra"
 
 #. module: report_aeroo
 #. odoo-python
@@ -253,16 +261,18 @@ msgid ""
 "Failure! Connection to DOCS service was not established or convertion to PDF"
 " unsuccessful!"
 msgstr ""
+"¡Falla! ¡No se estableció la conexión al servicio DOCS o la conversión a PDF"
+" no se realizó correctamente!"
 
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__file
 msgid "File"
-msgstr ""
+msgstr "Archivo"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__filter_name
 msgid "Filter Name"
-msgstr ""
+msgstr "Filtrar Nombre"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
@@ -275,16 +285,18 @@ msgid ""
 "Generate the report for each object separately,               then merge "
 "reports."
 msgstr ""
+"Generar el informe para cada objeto por separado y luego combine los "
+"informes."
 
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__global
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__host
 msgid "Host"
-msgstr ""
+msgstr "Anfitrión"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__id
@@ -299,6 +311,8 @@ msgid ""
 "If true, then page order will be like \"1, 2, 3; 1, 2, 3\", if not it will "
 "be like \"1, 1; 2, 2; 3, 3\""
 msgstr ""
+"Si es verdadero, entonces el orden de las páginas será como \"1, 2, 3; 1, 2,"
+" 3\", si no, será como \"1, 1; 2, 2; 3, 3\""
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__config_logo
@@ -308,7 +322,7 @@ msgstr "Imagen"
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__init
 msgid "Init"
-msgstr ""
+msgstr "Inicio"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__write_uid
@@ -327,7 +341,7 @@ msgstr "Última actualización el"
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__msg
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__name
@@ -341,16 +355,17 @@ msgstr "Nombre"
 #, python-format
 msgid "No Aeroo Reports template filename provided"
 msgstr ""
+"No se proporcionó ningún nombre de archivo de plantilla de Aeroo Reports"
 
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__default
 msgid "Not used"
-msgstr ""
+msgstr "No Utilizado"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__copies
 msgid "Number of Copies"
-msgstr ""
+msgstr "Número de Copias"
 
 #. module: report_aeroo
 #. odoo-python
@@ -358,12 +373,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__deferred__off
 #, python-format
 msgid "Off"
-msgstr ""
+msgstr "Apagado"
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__copies
 msgid "Only available if output is a pdf"
-msgstr ""
+msgstr "Sólo disponible si la salida es un PDF"
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_report_stylesheets__report_styles
@@ -376,6 +391,8 @@ msgid ""
 "Optional model to be used as parser, if not configured "
 "\"report.report_aeroo.abstract\" will be used"
 msgstr ""
+"Modelo opcional a ser usado como parser, si no está configurado se usará "
+"\"report.report_aeroo.abstract\""
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__out_format
@@ -386,12 +403,12 @@ msgstr ""
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__parser
 msgid "Parser"
-msgstr ""
+msgstr "Analizador"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__parser_model
 msgid "Parser Model"
-msgstr ""
+msgstr "Modelo de Analizador"
 
 #. module: report_aeroo
 #. odoo-python
@@ -408,7 +425,7 @@ msgstr "Contraseña"
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__port
 msgid "Port"
-msgstr ""
+msgstr "Puerto"
 
 #. module: report_aeroo
 #. odoo-python
@@ -416,17 +433,17 @@ msgstr ""
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__preload_mode__preload
 #, python-format
 msgid "Preload"
-msgstr ""
+msgstr "Precarga"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__preload_mode
 msgid "Preload Mode"
-msgstr ""
+msgstr "Modo de Precarga"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__process_sep
 msgid "Process Separately"
-msgstr ""
+msgstr "Procesar por Separado"
 
 #. module: report_aeroo
 #. odoo-python
@@ -441,6 +458,8 @@ msgid ""
 "Raises error on format convertion failure. Prevents returning               "
 "original report file type if no convertion is available."
 msgstr ""
+"Devuelve un error en caso de fallar la conversión de formato. Previene "
+"devolver el tipo de formato original si la conversion no es posible."
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__deferred_limit
@@ -448,11 +467,12 @@ msgid ""
 "Records limit at which you are invited to start the deferred               "
 "process."
 msgstr ""
+"Límite de registros a la cual se propone comenzar con el proceso diferido."
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__replace_report_id
 msgid "Replace Report"
-msgstr ""
+msgstr "Reemplazar Reporte"
 
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_ir_actions_report
@@ -462,18 +482,18 @@ msgstr "Acción de informe"
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_report_mimetypes
 msgid "Report Mime-Types"
-msgstr ""
+msgstr "Mime-Types Reporte"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_report_stylesheets_form
 msgid "Report Stylesheet"
-msgstr ""
+msgstr "Hoja de estilo del Reporte"
 
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_report_stylesheets
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_report_stylesheets_tree
 msgid "Report Stylesheets"
-msgstr ""
+msgstr "Hojas de estilos del Reporte"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_type
@@ -483,27 +503,27 @@ msgstr "Tipo de informe"
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_wizard
 msgid "Report Wizard"
-msgstr ""
+msgstr "Asistente de Reportes"
 
 #. module: report_aeroo
 #: model:ir.actions.report,name:report_aeroo.aeroo_sample_report_id
 msgid "Sample Report"
-msgstr ""
+msgstr "Reporte de Muestra"
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__replace_report_id
 msgid "Select a report that should be replaced."
-msgstr ""
+msgstr "Selecciona el reporte que debe ser reemplazado."
 
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__auth_type__simple
 msgid "Simple Authentication"
-msgstr ""
+msgstr "Autenticación Sencilla"
 
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__specified
 msgid "Specified"
-msgstr ""
+msgstr "Especificado"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__state
@@ -516,13 +536,13 @@ msgstr "Estado"
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__preload_mode__static
 #, python-format
 msgid "Static"
-msgstr ""
+msgstr "Estático"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__styles_mode
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
 msgid "Stylesheet"
-msgstr ""
+msgstr "Hoja de Estilo"
 
 #. module: report_aeroo
 #. odoo-python
@@ -532,16 +552,18 @@ msgid ""
 "Success! Connection to the DOCS service was successfully established and PDF"
 " convertion is working."
 msgstr ""
+"Conexión exitosa! La conexión al servicio DOCS se estableció correctamente y"
+" la conversión de PDF está funcionando."
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
 msgid "Template"
-msgstr ""
+msgstr "Plantilla"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_data
 msgid "Template Content"
-msgstr ""
+msgstr "Contenido de la Plantilla"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__in_format
@@ -552,23 +574,23 @@ msgstr ""
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
 msgid "Template Path"
-msgstr ""
+msgstr "Ruta de Plantilla"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_search_view
 msgid "Template Source"
-msgstr ""
+msgstr "Fuente de la Plantilla"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__stylesheet_id
 #: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__report_styles
 msgid "Template Stylesheet"
-msgstr ""
+msgstr "Hoja de estilo de la Plantilla"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__tml_source
 msgid "Template source"
-msgstr ""
+msgstr "Fuente de la Plantilla"
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__report_type
@@ -588,24 +610,24 @@ msgstr ""
 #: code:addons/report_aeroo/check_deps.py:0
 #, python-format
 msgid "Unmet python dependencies!"
-msgstr ""
+msgstr "Dependencias de python no encontradas!"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__username
 msgid "Username"
-msgstr ""
+msgstr "Nombre de Usuario"
 
 #. module: report_aeroo
 #. odoo-python
 #: code:addons/report_aeroo/check_deps.py:0
 #, python-format
 msgid "Warning!"
-msgstr ""
+msgstr "Advertencia!"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__wizard_id
 msgid "Wizard Action"
-msgstr ""
+msgstr "Acción del Asistente"
 
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_docs_config_installer
