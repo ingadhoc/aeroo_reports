@@ -31,7 +31,7 @@
                             <group string="Advanced">
                                 <field name="parser_model"/>
                                 <field name="process_sep"/>
-                                <field name="replace_report_id" domain="[('model','=',model),('id','&lt;&gt;',active_id)]"/>
+                                <field name="replace_report_id" domain="[('model','=',model),('id','&lt;&gt;',id)]"/>
                                 <field name="preload_mode" invisible="in_format == 'genshi-raw' or tml_source == 'parser'"/>
                                 <field name="disable_fallback" invisible="in_format == 'genshi-raw'"/>
                                 <field name="deferred"/>
@@ -58,12 +58,12 @@
         </record>
         <!--========================-->
         <record id="view_report_stylesheets_tree" model="ir.ui.view">
-            <field name="name">report.stylesheets.tree</field>
+            <field name="name">report.stylesheets.list</field>
             <field name="model">report.stylesheets</field>
             <field name="arch" type="xml">
-                <tree string="Report Stylesheets">
+                <list string="Report Stylesheets">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
         <!--========================-->
@@ -98,7 +98,7 @@
         <record model="ir.actions.act_window" id="action_report_stylesheets">
 			<field name="name">Aeroo Report Stylesheets</field>
 			<field name="res_model">report.stylesheets</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">list,form</field>
 		</record>
         <!--========================-->
         <menuitem action="action_report_stylesheets" parent="base.reporting_menuitem" id="menu_report_stylesheets" sequence="10"/>
