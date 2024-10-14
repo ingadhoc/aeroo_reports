@@ -6,7 +6,7 @@
 
 {
     'name': 'Aeroo Reports',
-    'version': "17.0.1.1.0",
+    'version': "18.0.1.0.0",
     'category': 'Generic Modules/Aeroo Reports',
     'summary': 'Enterprise grade reporting solution',
     'author': 'Alistek',
@@ -26,7 +26,7 @@
            ],
     },
     "license": "GPL-3 or any later version",
-    'installable': False,
+    'installable': True,
     'active': False,
     'application': True,
     'auto_install': False,

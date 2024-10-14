@@ -18,7 +18,7 @@ _url = 'xhttp://www.alistek.com/aeroo_banner/v11_1_report_aeroo.png'
 class DocsConfigInstaller(models.TransientModel):
     _name = 'docs_config.installer'
     _description = 'docs_config.installer'
-    _inherit = 'res.config.installer'
+    _inherit = 'res.config'
     _rec_name = 'host'
     _logo_image = fields.Binary()
 

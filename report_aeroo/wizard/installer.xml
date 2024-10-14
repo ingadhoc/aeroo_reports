@@ -4,7 +4,7 @@
     <record id="view_docs_config_installer" model="ir.ui.view">
       <field name="name">docs_config.installer.view</field>
       <field name="model">docs_config.installer</field>
-      <field name="inherit_id" ref="base.res_config_installer"/>
+      <field name="inherit_id" ref="base.res_config_view_base"/>
       <field name="arch" type="xml">
           <data>
                 <form position="attributes">
@@ -17,7 +17,7 @@
                         <button special="cancel" string="Close" class="btn-default"/>
                     </footer>
                 </footer>
-                <separator position="replace">
+                <group position="replace">
                   <field name="state" invisible="1" readonly="True"/>
                   <group col="4" colspan="4" expand="1">
                     <group colspan="1" expand="0">
@@ -52,7 +52,7 @@
                       </group>
                     </group>
                   </group>
-                </separator>
+                </group>
           </data>
       </field>
     </record>

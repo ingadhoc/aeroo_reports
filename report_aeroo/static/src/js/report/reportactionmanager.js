@@ -2,6 +2,7 @@
 
 import {download} from "@web/core/network/download"
 import {registry} from "@web/core/registry"
+import { user } from "@web/core/user";
 
 async function aerooReportHandler (action, options, env){
     // let cloned_action = _.clone(action);
@@ -9,6 +10,7 @@ async function aerooReportHandler (action, options, env){
     if (action.report_type === "aeroo"){
         const type = "aeroo";
         let url_ = `/report/${type}/${action.report_name}`;
+        debugger;
         const actionContext = action.context || {};
         if (cloned_action.context.active_ids) {
             url_ += "/" + cloned_action.context.active_ids.join(',');
@@ -24,7 +26,7 @@ async function aerooReportHandler (action, options, env){
                 url: "/report/download",
                 data: {
                     data: JSON.stringify([url_, action.report_type]),
-                    context: JSON.stringify(env.services.user.context),
+                    context: JSON.stringify(user.context),
                 },
             });
         } finally {
