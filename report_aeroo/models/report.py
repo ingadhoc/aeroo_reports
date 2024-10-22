@@ -152,8 +152,8 @@ class ReportAeroo(models.Model):
         ], string='Stylesheet', default='default')
     stylesheet_id = fields.Many2one('report.stylesheets', 'Template Stylesheet')
     preload_mode = fields.Selection([
-        ('static',_('Static')),
-        ('preload',_('Preload')),
+        ('static', 'Static'),
+        ('preload', 'Preload'),
         ], string='Preload Mode', default='static')
     tml_source = fields.Selection([
         ('database','Database'),
@@ -164,7 +164,7 @@ class ReportAeroo(models.Model):
     attachment_id = fields.Many2one('ir.attachment', domain=[("res_model", "=", "report.aeroo")], ondelete='set null')
     parser_model = fields.Char(
         help='Optional model to be used as parser, if not configured "report.report_aeroo.abstract" will be used')
-    report_type = fields.Selection(selection_add=[('aeroo', _('Aeroo Reports'))], ondelete={'aeroo': 'cascade'})
+    report_type = fields.Selection(selection_add=[('aeroo', 'Aeroo Reports')], ondelete={'aeroo': 'cascade'})
     process_sep = fields.Boolean('Process Separately',
         help='Generate the report for each object separately, \
               then merge reports.')
@@ -187,8 +187,8 @@ class ReportAeroo(models.Model):
     extras = fields.Char('Extra options', compute='_get_extras',
         size=256)
     deferred = fields.Selection([
-        ('off',_('Off')),
-        ('adaptive',_('Adaptive')),
+        ('off', 'Off'),
+        ('adaptive', 'Adaptive'),
         ],'Deferred',
         help='Deferred (aka Batch) reporting, for reporting on large amount \
               of data.',

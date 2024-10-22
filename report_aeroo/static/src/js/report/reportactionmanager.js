@@ -10,7 +10,6 @@ async function aerooReportHandler (action, options, env){
     if (action.report_type === "aeroo"){
         const type = "aeroo";
         let url_ = `/report/${type}/${action.report_name}`;
-        debugger;
         const actionContext = action.context || {};
         if (cloned_action.context.active_ids) {
             url_ += "/" + cloned_action.context.active_ids.join(',');
