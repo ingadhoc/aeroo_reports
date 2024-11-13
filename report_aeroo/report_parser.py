@@ -106,7 +106,7 @@ class ReportAerooAbstract(models.AbstractModel):
 
     def __filter(self, val):
         if isinstance(val, models.BaseModel) and val:
-            return val._compute_display_name()[0][1]
+            return val._compute_display_name()
         return _filter(val)
 
     # Extra Functions ==================================================
