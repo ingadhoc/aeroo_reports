@@ -13,13 +13,15 @@
     'website': 'http://www.alistek.com',
     'complexity': "easy",
     'depends': ['base', 'web', 'mail'],
+    'demo': [
+        "demo/report_sample.xml",
+    ],
     'data': [
-             "views/report_view.xml",
-             "data/report_aeroo_data.xml",
-             "wizard/installer.xml",
-             "security/ir.model.access.csv",
-             "demo/report_sample.xml",
-             ],
+        "views/report_view.xml",
+        "data/report_aeroo_data.xml",
+        "wizard/installer.xml",
+        "security/ir.model.access.csv",
+    ],
     'assets': {
         'web.assets_backend': [
             'report_aeroo/static/src/js/report/reportactionmanager.js',
