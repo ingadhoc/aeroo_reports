@@ -52,21 +52,21 @@ class DocsConfigInstaller(models.TransientModel):
         recs.config_logo = recs._get_image()
 
     # Fields
-    enabled = fields.Boolean('Enabled', default=False)
-    host = fields.Char('Host', size=64, required=True, default='localhost')
-    port = fields.Integer('Port', required=True, default=8989)
+    enabled = fields.Boolean(default=False)
+    host = fields.Char(size=64, required=True, default='localhost')
+    port = fields.Integer(required=True, default=8989)
     auth_type = fields.Selection([
             ('simple', 'Simple Authentication')
         ], 'Authentication', default=False)
-    username = fields.Char('Username', size=32, default='anonymous')
-    password = fields.Char('Password', size=32, default='anonymous')
+    username = fields.Char(size=32, default='anonymous')
+    password = fields.Char(size=32, default='anonymous')
     state = fields.Selection([
             ('init', 'Init'),
             ('error', 'Error'),
             ('done', 'Done'),
-            ], 'State', index=True, readonly=True, default='init')
+            ], index=True, readonly=True, default='init')
     msg = fields.Text('Message', readonly=True)
-    error_details = fields.Text('Error Details', readonly=True)
+    error_details = fields.Text(readonly=True)
     config_logo = fields.Binary(
         compute='_get_image_fn',
         string='Image',
