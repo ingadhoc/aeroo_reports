@@ -9,7 +9,7 @@
     'version': "18.0.1.0.0",
     'category': 'Generic Modules/Aeroo Reports',
     'summary': 'Enterprise grade reporting solution',
-    'author': 'Alistek',
+    'author': 'Alistek',  # pylint: disable=manifest-required-author
     'website': 'http://www.alistek.com',
     'complexity': "easy",
     'depends': ['base', 'web', 'mail'],
