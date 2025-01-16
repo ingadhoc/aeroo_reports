@@ -24,7 +24,7 @@ class ReportStylesheets(models.Model):
     _description = 'Report Stylesheets'
 
     ### Fields
-    name = fields.Char('Name', size=64, required=True)
+    name = fields.Char(size=64, required=True)
     report_styles = fields.Binary('Template Stylesheet',
         help='OpenOffice.org / LibreOffice stylesheet (.odt)')
     ### ends Fields
@@ -48,11 +48,11 @@ class ReportMimetypes(models.Model):
     _description = 'Report Mime-Types'
 
     ### Fields
-    name = fields.Char('Name', size=64, required=True, readonly=True)
-    code = fields.Char('Code', size=16, required=True, readonly=True)
+    name = fields.Char(size=64, required=True, readonly=True)
+    code = fields.Char(size=16, required=True, readonly=True)
     compatible_types = fields.Char('Compatible Mime-Types', size=128, 
         readonly=True)
-    filter_name = fields.Char('Filter Name', size=128, readonly=True)
+    filter_name = fields.Char(size=128, readonly=True)
     ### ends Fields
 
 # ------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ class ReportAeroo(models.Model):
         return [(r['code'], r['name']) for r in res]
 
     ### Fields
-    charset = fields.Selection('_get_encodings', string='Charset',
+    charset = fields.Selection('_get_encodings',
         required=True, default='utf_8')
     styles_mode = fields.Selection([
         ('default','Not used'),
@@ -154,7 +154,7 @@ class ReportAeroo(models.Model):
     preload_mode = fields.Selection([
         ('static', 'Static'),
         ('preload', 'Preload'),
-        ], string='Preload Mode', default='static')
+        ], default='static')
     tml_source = fields.Selection([
         ('database','Database'),
         ('file','File'),
@@ -172,7 +172,7 @@ class ReportAeroo(models.Model):
         string='Template Mime-type',)
     out_format = fields.Many2one('report.mimetypes', 'Output Mime-type',
         default=_get_default_outformat)
-    report_wizard = fields.Boolean('Report Wizard',
+    report_wizard = fields.Boolean(
         help='Adds a standard wizard when the report gets invoked.')
     copies = fields.Integer(
         string='Number of Copies',
@@ -189,7 +189,7 @@ class ReportAeroo(models.Model):
     deferred = fields.Selection([
         ('off', 'Off'),
         ('adaptive', 'Adaptive'),
-        ],'Deferred',
+        ],
         help='Deferred (aka Batch) reporting, for reporting on large amount \
               of data.',
         default='off')
@@ -198,7 +198,7 @@ class ReportAeroo(models.Model):
               process.',
         default=80
         )
-    replace_report_id = fields.Many2one('ir.actions.report', 'Replace Report',
+    replace_report_id = fields.Many2one('ir.actions.report',
         help='Select a report that should be replaced.')
     wizard_id = fields.Many2one('ir.actions.act_window', 'Wizard Action')
     report_data = fields.Binary(string='Template Content', attachment=True)
