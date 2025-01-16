@@ -5,6 +5,7 @@
 ###############################################################################
 
 import os
+from urllib.request import urlopen
 from base64 import b64encode
 
 from odoo.addons.report_aeroo.docs_client_lib import DOCSConnection
@@ -27,7 +28,7 @@ class DocsConfigInstaller(models.TransientModel):
         if self._logo_image:
             return self._logo_image
         try:
-            im = urllib2.urlopen(_url.encode("UTF-8"))
+            im = urlopen(_url.encode("UTF-8"), timeout=10)
             if im.headers.maintype != 'image':
                 raise TypeError(im.headers.maintype)
         except Exception:
