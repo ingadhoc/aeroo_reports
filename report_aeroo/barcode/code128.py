@@ -2,6 +2,8 @@
 #                    General contacts <info@alistek.com>
 # This list was cut'n'pasted verbatim from the "Code 128 Specification Page"
 # at http://www.adams1.com/pub/russadam/128code.html
+import os
+from PIL import Image
 
 codelist="""0 	SP 	SP 	00 	2 1 2 2 2 2
 1 	! 	! 	01 	2 2 2 1 2 2
@@ -154,8 +156,6 @@ def encode_message(msg):
     return message
 
 
-import os
-from PIL import Image
 def get_code(message,xw=1,h=100,rotate=None):
     """ message is message to code.
         xw is horizontal multiplier (in pixels width of narrowest bar)

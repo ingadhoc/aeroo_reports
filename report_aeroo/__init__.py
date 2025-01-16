@@ -3,6 +3,14 @@
 #  This file is part of Aeroo Reports software - for license refer LICENSE file  
 #
 ################################################################################
+from . import controllers
+from . import models
+from . import report_parser
+
+from . import report
+from . import demo
+
+from . import wizard
 
 check_list = [
     'import aeroolib',
@@ -14,12 +22,3 @@ check_list = [
 
 #from . import check_deps
 #check_deps(check_list)
-
-from . import controllers
-from . import models
-from . import report_parser
-
-from . import report
-from . import demo
-
-from . import wizard
