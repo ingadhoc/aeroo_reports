@@ -48,7 +48,7 @@ def make_barcode(code, code_type='ean13', rotate=None, height=50, xw=1):
 
     tf = StringIO()
     try:
-        if rotate!=None:
+        if rotate is not None:
             im=im.rotate(int(rotate))
     except Exception as e:
         pass
