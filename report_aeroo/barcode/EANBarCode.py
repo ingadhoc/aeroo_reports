@@ -4,22 +4,24 @@
 from odoo.tools import config, ustr
 fontsize = 12
 
-"""
-This class generate EAN bar code, it required PIL (python imaging library)
-installed.
 
-If the code has not checksum (12 digits), it added automatically.
-
-Create bar code sample :
-   from EANBarCode import EanBarCode
-   bar = EanBarCode()
-   bar.getImage("9782212110708",50,"gif")
-
-"""
 
 class EanBarCode:
-   """ Compute the EAN bar code """
+   """
+   This class generate EAN bar code, it required PIL (python imaging library)
+   installed.
+
+   If the code has not checksum (12 digits), it added automatically.
+
+   Create bar code sample :
+      from EANBarCode import EanBarCode
+      bar = EanBarCode()
+      bar.getImage("9782212110708",50,"gif")
+
+   """
+
    def __init__(self):
+      """ Compute the EAN bar code """
       A = {0 : "0001101", 1 : "0011001", 2 : "0010011", 3 : "0111101", 4 : "0100011", 
            5 : "0110001", 6 : "0101111", 7 : "0111011", 8 : "0110111", 9 : "0001011"}
       B = {0 : "0100111", 1 : "0110011", 2 : "0011011", 3 : "0100001", 4 : "0011101",
