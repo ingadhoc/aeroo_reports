@@ -48,7 +48,7 @@ class DocsConfigInstaller(models.TransientModel):
             self._logo_image = b64encode(im.read())
             return self._logo_image
 
-    def _get_image_fn(recs):
+    def _compute_config_logo(recs):
         recs.config_logo = recs._get_image()
 
     # Fields
@@ -68,7 +68,7 @@ class DocsConfigInstaller(models.TransientModel):
     msg = fields.Text('Message', readonly=True)
     error_details = fields.Text(readonly=True)
     config_logo = fields.Binary(
-        compute='_get_image_fn',
+        compute='_compute_config_logo',
         string='Image',
         default=_get_image)
     # ends Fields

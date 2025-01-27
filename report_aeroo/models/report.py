@@ -111,7 +111,7 @@ class ReportAeroo(models.Model):
         res = self.env['report.mimetypes'].search([('code','=','oo-odt')])
         return res and res[0].id or False
 
-    def _get_extras(recs):
+    def _compute_extras(recs):
         result = []
         if recs.aeroo_docs_enabled():
             result.append('aeroo_ooo')
@@ -184,7 +184,7 @@ class ReportAeroo(models.Model):
     disable_fallback = fields.Boolean('Disable Format Fallback',
         help='Raises error on format convertion failure. Prevents returning \
               original report file type if no convertion is available.')
-    extras = fields.Char('Extra options', compute='_get_extras',
+    extras = fields.Char('Extra options', compute='_compute_extras',
         size=256)
     deferred = fields.Selection([
         ('off', 'Off'),
