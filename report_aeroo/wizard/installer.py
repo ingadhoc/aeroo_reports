@@ -8,7 +8,7 @@ import os
 from urllib.request import urlopen
 from base64 import b64encode
 
-from odoo.addons.report_aeroo.docs_client_lib import DOCSConnection
+from ..docs_client_lib import DOCSConnection
 
 from odoo import api, fields, models, _
 from odoo.tools import file_open
