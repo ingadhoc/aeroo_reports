@@ -75,7 +75,7 @@ class ReportAeroo(models.Model):
         conditions = [('report_type', 'in', ['aeroo']),
                       ('report_name', '=', report_name)]
         context = self.env['res.users'].context_get()
-        return report_obj.with_context(context).search(conditions, limit=1)
+        return report_obj.with_context(**context).search(conditions, limit=1)
 
     def _read_template(self):
         self.ensure_one()
