@@ -64,7 +64,7 @@
             </list>
         </field>
     </record>
-    
+
     <record id="view_company_form_aeroo" model="ir.ui.view">
         <field name="name">res.company.form</field>
         <field name="model">res.company</field>
@@ -75,7 +75,7 @@
             </field>
         </field>
     </record>
-    
+
     <record id="act_aeroo_report_search_view" model="ir.ui.view">
         <field name="name">ir.actions.report.aeroo.search</field>
         <field name="model">ir.actions.report</field>
@@ -98,6 +98,6 @@
         <field name="res_model">report.stylesheets</field>
         <field name="view_mode">list,form</field>
     </record>
-    
+
     <menuitem action="action_report_stylesheets" parent="base.reporting_menuitem" id="menu_report_stylesheets" sequence="10"/>
 </odoo>

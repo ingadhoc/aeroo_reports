@@ -29,31 +29,32 @@
 #
 ##############################################################################
 
-from .code128 import get_code
-from .code39 import create_c39
-from .EANBarCode import EanBarCode
 from io import StringIO
 
-def make_barcode(code, code_type='ean13', rotate=None, height=50, xw=1):
+from .code39 import create_c39
+from .code128 import get_code
+from .EANBarCode import EanBarCode
+
+
+def make_barcode(code, code_type="ean13", rotate=None, height=50, xw=1):
     if code:
-        if code_type.lower()=='ean13':
-            bar=EanBarCode()
-            im = bar.getImage(code,height)
-        elif code_type.lower()=='code128':
+        if code_type.lower() == "ean13":
+            bar = EanBarCode()
+            im = bar.getImage(code, height)
+        elif code_type.lower() == "code128":
             im = get_code(code, xw, height)
-        elif code_type.lower()=='code39':
+        elif code_type.lower() == "code39":
             im = create_c39(height, xw, code)
     else:
-        return StringIO(), 'image/png'
+        return StringIO(), "image/png"
 
     tf = StringIO()
     try:
         if rotate is not None:
-            im=im.rotate(int(rotate))
-    except Exception as e:
+            im = im.rotate(int(rotate))
+    except Exception:
         pass
-    im.save(tf, 'png')
-    size_x = str(im.size[0]/96.0)+'in'
-    size_y = str(im.size[1]/96.0)+'in'
-    return tf, 'image/png', size_x, size_y
-
+    im.save(tf, "png")
+    size_x = str(im.size[0] / 96.0) + "in"
+    size_y = str(im.size[1] / 96.0) + "in"
+    return tf, "image/png", size_x, size_y

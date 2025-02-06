@@ -18,23 +18,23 @@
 #
 ##############################################################################
 {
-    'name': 'Report to print Aeroo',
-    'version': "16.0.1.0.0",
-    'category': 'Reporting Subsystem',
-    'sequence': 14,
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'depends': [
-        'report_aeroo',
-        'base_report_to_printer',
+    "name": "Report to print Aeroo",
+    "version": "16.0.1.0.0",
+    "category": "Reporting Subsystem",
+    "sequence": 14,
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "depends": [
+        "report_aeroo",
+        "base_report_to_printer",
     ],
-    'data': [],
-    'assets': {
-        'web.assets_backend': [
-            'base_report_to_printer_aeroo/static/src/js/qweb_action_manager.js',
+    "data": [],
+    "assets": {
+        "web.assets_backend": [
+            "base_report_to_printer_aeroo/static/src/js/qweb_action_manager.js",
         ],
     },
-    'installable': False,
-    'auto_install': True,
+    "installable": False,
+    "auto_install": True,
 }

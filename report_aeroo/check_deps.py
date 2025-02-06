@@ -29,12 +29,13 @@
 #
 ################################################################################
 
-from odoo.osv import osv
 from odoo import _
+from odoo.osv import osv
 
 __all__ = [
-    'check_deps',
+    "check_deps",
 ]
+
 
 def check_deps(check_list):
     error = False
@@ -46,4 +47,4 @@ def check_deps(check_list):
             error = True
             import_errors.append(str(e))
     if error:
-        raise osv.except_osv(_('Warning!')+' '+_('Unmet python dependencies!'), '\n'.join(import_errors))
+        raise osv.except_osv(_("Warning!") + " " + _("Unmet python dependencies!"), "\n".join(import_errors))
