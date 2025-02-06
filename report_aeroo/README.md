@@ -51,7 +51,7 @@ Report templates in the following formats
 Output formats:
 --------------------------------------------------------------------------------
 * Open Document Format (ODF) - .odt, .ods;
-* Other ASCII based formats, like HTML, CSV, etc. 
+* Other ASCII based formats, like HTML, CSV, etc.
 * using Aeroo DOCS - PDF, DOC, XLS, CSV.
 
 Reporting engine features

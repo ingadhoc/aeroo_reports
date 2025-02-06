@@ -2,10 +2,9 @@
 #                    General contacts <info@alistek.com>
 # This list was cut'n'pasted verbatim from the "Code 128 Specification Page"
 # at http://www.adams1.com/pub/russadam/128code.html
-import os
 from PIL import Image
 
-codelist="""0 	SP 	SP 	00 	2 1 2 2 2 2
+codelist = """0 	SP 	SP 	00 	2 1 2 2 2 2
 1 	! 	! 	01 	2 2 2 1 2 2
 2 	" 	" 	02 	2 2 2 2 2 1
 3 	# 	# 	03 	1 2 1 2 2 3
@@ -110,76 +109,73 @@ codelist="""0 	SP 	SP 	00 	2 1 2 2 2 2
 102 (Hex 86) 	FNC 1 	FNC 1 	FNC 1 	4 1 1 1 3 1"""
 
 
-
-
-other="""103 (Hex 87) 	START (Code A) 	2 1 1 4 1 2
+other = """103 (Hex 87) 	START (Code A) 	2 1 1 4 1 2
 104 (Hex 88) 	START (Code B) 	2 1 1 2 1 4
 105 (Hex 89) 	START (Code C) 	2 1 1 2 3 2
 106 	STOP 	2 3 3 1 1 1 2"""
 
 
-codes={}
-values={}
-for l in codelist.split('\n'):
-    l.strip()    
-    num,a1,b1,c1,code=l.split('\t')
-    num=int(num.split(' ')[0])
-    values[num]=[int(x) for x in code.split()]
-    codes[b1.strip()]=num
-
-codes[' ']=codes['SP']
-
-for l in other.split('\n'):
+codes = {}
+values = {}
+for l in codelist.split("\n"):
     l.strip()
-    num,name,code=l.split('\t')
-    num=int(num.split(' ')[0])
-    values[num]=[int(x) for x in code.split()]
-    codes[name.strip()]=num
+    num, a1, b1, c1, code = l.split("\t")
+    num = int(num.split(" ")[0])
+    values[num] = [int(x) for x in code.split()]
+    codes[b1.strip()] = num
+
+codes[" "] = codes["SP"]
+
+for l in other.split("\n"):
+    l.strip()
+    num, name, code = l.split("\t")
+    num = int(num.split(" ")[0])
+    values[num] = [int(x) for x in code.split()]
+    codes[name.strip()] = num
+
 
 def encode_message(msg):
-    startnum=codes['START (Code B)']
-    message=values[startnum][:]
-    chksum=startnum
-    mult=1
+    startnum = codes["START (Code B)"]
+    message = values[startnum][:]
+    chksum = startnum
+    mult = 1
     for c in msg:
         if not codes.has_key(c):
-            raise "No code for "+c
-        chksum=chksum+mult*codes[c]
-        mult=mult+1
-        message=message+values[codes[c]]
+            raise "No code for " + c
+        chksum = chksum + mult * codes[c]
+        mult = mult + 1
+        message = message + values[codes[c]]
 
-    chksum=chksum%103
-    
-    message=message+values[chksum]
-    message=message+values[codes['STOP']]
+    chksum = chksum % 103
+
+    message = message + values[chksum]
+    message = message + values[codes["STOP"]]
 
     return message
 
 
-def get_code(message,xw=1,h=100,rotate=None):
-    """ message is message to code.
-        xw is horizontal multiplier (in pixels width of narrowest bar)
-        h is height in pixels.
+def get_code(message, xw=1, h=100, rotate=None):
+    """message is message to code.
+    xw is horizontal multiplier (in pixels width of narrowest bar)
+    h is height in pixels.
 
-        Returns a Python Imaging Library object."""
+    Returns a Python Imaging Library object."""
 
-    widths=[xw*20]+encode_message(message)+[xw*20]
-    
-    bits=[]
-    i=1
+    widths = [xw * 20] + encode_message(message) + [xw * 20]
+
+    bits = []
+    i = 1
     for w in widths:
-        bits=bits+[i]*w*xw
-        i=1-i
+        bits = bits + [i] * w * xw
+        i = 1 - i
 
-    #print len(bits)
-    #print bits
-    
-    i=Image.new('1',(len(bits),h),1)
+    # print len(bits)
+    # print bits
+
+    i = Image.new("1", (len(bits), h), 1)
 
     for b in range(len(bits)):
         for y in range(h):
-            i.putpixel((b,y),255*bits[b])
+            i.putpixel((b, y), 255 * bits[b])
 
     return i
-
-
