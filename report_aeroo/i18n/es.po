@@ -3,15 +3,16 @@
 # 	* report_aeroo
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
+# JoseKeh, 2025
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-05 20:25+0000\n"
+"POT-Creation-Date: 2025-02-12 16:26+0000\n"
 "PO-Revision-Date: 2024-11-12 19:41+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -228,7 +229,7 @@ msgstr "Activado"
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__error
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__error_details
@@ -277,7 +278,7 @@ msgstr ""
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__global
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__host
@@ -396,7 +397,7 @@ msgstr "Modelo de Analizador"
 #. odoo-python
 #: code:addons/report_aeroo/models/report.py:0
 msgid "Parser model %s not found on database."
-msgstr ""
+msgstr "Modelo de Analizador %s no encontrado en la base de datos."
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__password
