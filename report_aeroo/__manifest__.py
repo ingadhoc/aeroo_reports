@@ -28,7 +28,7 @@
         ],
     },
     "license": "GPL-3 or any later version",
-    'installable': False,
+    "installable": False,
     "application": True,
     "auto_install": False,
 }
