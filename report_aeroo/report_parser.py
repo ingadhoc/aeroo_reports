@@ -359,10 +359,10 @@ class ReportAerooAbstract(models.AbstractModel):
         if date:
             # we force the timezone of the user if the value is datetime
             if isinstance(value, (datetime.datetime)):
-                value = value.astimezone(pytz.timezone(self.env.user.tz or "UTC"))
+                value = value.astimezone(pytz.timezone(self.env.tz or "UTC"))
             return odoo_fd(self.env, value, lang_code=lang_code, date_format=date_format)
         elif date_time:
-            return format_datetime(self.env, value, lang_code=lang_code, date_format=date_format, tz=self.env.user.tz)
+            return format_datetime(self.env, value, lang_code=lang_code, date_format=date_format, tz=self.env.tz)
         return odoo_fl(self.env, value, digits, grouping, monetary, dp, currency_obj)
 
     def _set_objects(self, model, docids):
@@ -518,7 +518,7 @@ class ReportAerooAbstract(models.AbstractModel):
     def assemble_tasks(self, docids, data, report, ctx):
         code = report.out_format.code
         result = self.single_report(docids, data, report, ctx)
-        return_filename = self._context.get("return_filename")
+        return_filename = self.env.context.get("return_filename")
 
         print_report_name = "report"
         if report.print_report_name and not len(docids) > 1:
@@ -545,15 +545,12 @@ class ReportAerooAbstract(models.AbstractModel):
 
     @api.model
     def aeroo_report(self, docids, data):
-        report_name = self._context.get("report_name")
+        report_name = self.env.context.get("report_name")
         report = self.env["ir.actions.report"]._get_report_from_name(report_name)
         # TODO
         # _logger.info("Start Aeroo Reports %s (%s)" % (
         #     name, ctx.get('active_model')),
         #     logging.INFO)  # debug mode
-
-        if "tz" not in self._context:
-            self = self.with_context(tz=self.env.user.tz)
 
         # TODO we should propagate context in the proper way, just with self
 
@@ -568,7 +565,7 @@ class ReportAerooAbstract(models.AbstractModel):
 
             results = []
             for docid in docids:
-                results.append(self.assemble_tasks([docid], data, report, self._context))
+                results.append(self.assemble_tasks([docid], data, report, self.env.context))
             output = PdfFileWriter()
             for r in results:
                 reader = PdfFileReader(BytesIO(r[0]))
@@ -577,9 +574,13 @@ class ReportAerooAbstract(models.AbstractModel):
             s = BytesIO()
             output.write(s)
             data = s.getvalue()
-            res = self._context.get("return_filename") and (data, results[0][1], results[0][2]) or (data, results[0][1])
+            res = (
+                self.env.context.get("return_filename")
+                and (data, results[0][1], results[0][2])
+                or (data, results[0][1])
+            )
         else:
-            res = self.assemble_tasks(docids, data, report, self._context)
+            res = self.assemble_tasks(docids, data, report, self.env.context)
         # TODO
         # _logger.info("End Aeroo Reports %s (%s), total elapsed time: %s" %
         #              (name, model, time() - aeroo_print.start_total_time),
