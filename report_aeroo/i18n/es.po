@@ -3,16 +3,15 @@
 # 	* report_aeroo
 # 
 # Translators:
-# JoseKeh, 2025
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025
+# ADHOC - Bot <transbot@adhoc.com.ar>, 2025
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0+e\n"
+"Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 20:10+0000\n"
-"PO-Revision-Date: 2024-11-12 19:41+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025\n"
+"POT-Creation-Date: 2025-11-03 17:41+0000\n"
+"PO-Revision-Date: 2025-11-03 17:41+0000\n"
+"Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -211,8 +210,13 @@ msgstr "Deshabilitar el formato alternativo"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__display_name
 #: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_product_template_printer__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_report_aeroo_abstract__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_sample_report__display_name
 #: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_res_company__display_name
 msgid "Display Name"
 msgstr "Mostrar nombre"
 
@@ -229,7 +233,7 @@ msgstr "Activado"
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__error
 msgid "Error"
-msgstr "Error"
+msgstr ""
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__error_details
@@ -278,7 +282,7 @@ msgstr ""
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__global
 msgid "Global"
-msgstr "Global"
+msgstr ""
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__host
@@ -287,8 +291,13 @@ msgstr "Anfitrión"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__id
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__id
 #: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_product_template_printer__id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_report_aeroo_abstract__id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_sample_report__id
 #: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__id
+#: model:ir.model.fields,field_description:report_aeroo.field_res_company__id
 msgid "ID"
 msgstr "ID (identificación)"
 
