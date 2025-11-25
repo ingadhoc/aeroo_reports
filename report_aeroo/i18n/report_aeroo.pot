@@ -1,0 +1,603 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* report_aeroo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-25 17:19+0000\n"
+"PO-Revision-Date: 2025-11-25 17:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer___logo_image
+msgid " Logo Image"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__deferred__adaptive
+msgid "Adaptive"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__report_wizard
+msgid "Adds a standard wizard when the report gets invoked."
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
+msgid "Advanced"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
+msgid "Aeroo Configuration"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.actions.act_window,name:report_aeroo.action_docs_config_wizard
+#: model:ir.ui.menu,name:report_aeroo.menu_docs_config_wizard
+msgid "Aeroo DOCS connection"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/report_parser.py:0
+msgid ""
+"Aeroo DOCS error!\n"
+"%s"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_search_view
+msgid "Aeroo Report"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.actions.act_window,name:report_aeroo.action_report_stylesheets
+#: model:ir.ui.menu,name:report_aeroo.menu_report_stylesheets
+msgid "Aeroo Report Stylesheets"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__report_type__aeroo
+msgid "Aeroo Reports"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_res_company__stylesheet_id
+msgid "Aeroo Reports Global Stylesheet"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/report_parser.py:0
+msgid "Aeroo Reports could'nt find report template"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
+msgid "Apply and Test"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__attachment_id
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__attachment
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
+msgid "Attachment"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__auth_type
+msgid "Authentication"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__charset
+msgid "Charset"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
+msgid "Close"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__code
+msgid "Code"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model,name:report_aeroo.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__compatible_types
+msgid "Compatible Mime-Types"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
+msgid ""
+"Configure Aeroo Reports connection to DOCS service and test document "
+"conversion."
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
+msgid "Configure DOCS service connection"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/wizard/installer.py:0
+msgid "Connection to Aeroo DOCS disabled!"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__copies_intercalate
+msgid "Copies Intercalate"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/report_parser.py:0
+msgid "Could not connect Aeroo DOCS!"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__create_uid
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__create_uid
+#: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__create_date
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__create_date
+#: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__database
+msgid "Database"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__deferred
+msgid "Deferred"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__deferred
+msgid ""
+"Deferred (aka Batch) reporting, for reporting on large amount               "
+"of data."
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__deferred_limit
+msgid "Deferred Records Limit"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
+msgid "Details"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__disable_fallback
+msgid "Disable Format Fallback"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_product_template_printer__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_report_aeroo_abstract__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_sample_report__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__display_name
+#: model:ir.model.fields,field_description:report_aeroo.field_res_company__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__done
+msgid "Done"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__enabled
+msgid "Enabled"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__error
+msgid "Error"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__error_details
+msgid "Error Details"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__extras
+msgid "Extra options"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/wizard/installer.py:0
+msgid ""
+"Failure! Connection to DOCS service was not established or convertion to PDF"
+" unsuccessful!"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__file
+msgid "File"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__filter_name
+msgid "Filter Name"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
+msgid "Finish"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__process_sep
+msgid ""
+"Generate the report for each object separately,               then merge "
+"reports."
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__global
+msgid "Global"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__host
+msgid "Host"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__id
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_product_template_printer__id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_report_aeroo_abstract__id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_sample_report__id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__id
+#: model:ir.model.fields,field_description:report_aeroo.field_res_company__id
+msgid "ID"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__copies_intercalate
+msgid ""
+"If true, then page order will be like \"1, 2, 3; 1, 2, 3\", if not it will "
+"be like \"1, 1; 2, 2; 3, 3\""
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__config_logo
+msgid "Image"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__init
+msgid "Init"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__write_uid
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__write_uid
+#: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__write_date
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__write_date
+#: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__msg
+msgid "Message"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_report_mimetypes__name
+#: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__name
+msgid "Name"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/report_parser.py:0
+msgid "No Aeroo Reports template filename provided"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__default
+msgid "Not used"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__copies
+msgid "Number of Copies"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__deferred__off
+msgid "Off"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__copies
+msgid "Only available if output is a pdf"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_report_stylesheets__report_styles
+msgid "OpenOffice.org / LibreOffice stylesheet (.odt)"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__parser_model
+msgid ""
+"Optional model to be used as parser, if not configured "
+"\"report.report_aeroo.abstract\" will be used"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__out_format
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_search_view
+msgid "Output Mime-type"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__parser
+msgid "Parser"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__parser_model
+msgid "Parser Model"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/models/report.py:0
+msgid "Parser model %s not found on database."
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__password
+msgid "Password"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__port
+msgid "Port"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__preload_mode__preload
+msgid "Preload"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__preload_mode
+msgid "Preload Mode"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__process_sep
+msgid "Process Separately"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/report_parser.py:0
+msgid "Process_sep not compatible with selected output format"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__disable_fallback
+msgid ""
+"Raises error on format convertion failure. Prevents returning               "
+"original report file type if no convertion is available."
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__deferred_limit
+msgid ""
+"Records limit at which you are invited to start the deferred               "
+"process."
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__replace_report_id
+msgid "Replace Report"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model,name:report_aeroo.model_ir_actions_report
+msgid "Report Action"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model,name:report_aeroo.model_report_mimetypes
+msgid "Report Mime-Types"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.view_report_stylesheets_form
+msgid "Report Stylesheet"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model,name:report_aeroo.model_report_stylesheets
+#: model_terms:ir.ui.view,arch_db:report_aeroo.view_report_stylesheets_tree
+msgid "Report Stylesheets"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_type
+msgid "Report Type"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_wizard
+msgid "Report Wizard"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.actions.report,name:report_aeroo.aeroo_sample_report_id
+msgid "Sample Report"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__replace_report_id
+msgid "Select a report that should be replaced."
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__auth_type__simple
+msgid "Simple Authentication"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__specified
+msgid "Specified"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__state
+msgid "State"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__preload_mode__static
+msgid "Static"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__styles_mode
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
+msgid "Stylesheet"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/wizard/installer.py:0
+msgid ""
+"Success! Connection to the DOCS service was successfully established and PDF"
+" convertion is working."
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
+msgid "Template"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_data
+msgid "Template Content"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__in_format
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_search_view
+msgid "Template Mime-type"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
+msgid "Template Path"
+msgstr ""
+
+#. module: report_aeroo
+#: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_search_view
+msgid "Template Source"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__stylesheet_id
+#: model:ir.model.fields,field_description:report_aeroo.field_report_stylesheets__report_styles
+msgid "Template Stylesheet"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__tml_source
+msgid "Template source"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__report_type
+msgid ""
+"The type of the report that will be rendered, each one having its own "
+"rendering method. HTML means the report will be opened directly in your "
+"browser PDF means the report will be rendered using Wkhtmltopdf and "
+"downloaded by the user."
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/check_deps.py:0
+msgid "Unmet python dependencies!"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__username
+msgid "Username"
+msgstr ""
+
+#. module: report_aeroo
+#. odoo-python
+#: code:addons/report_aeroo/check_deps.py:0
+msgid "Warning!"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__wizard_id
+msgid "Wizard Action"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model,name:report_aeroo.model_docs_config_installer
+msgid "docs_config.installer"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model,name:report_aeroo.model_report_product_template_printer
+msgid "report.product_template_printer"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model,name:report_aeroo.model_report_report_aeroo_abstract
+msgid "report.report_aeroo.abstract"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model,name:report_aeroo.model_report_sample_report
+msgid "report.sample_report"
+msgstr ""
