@@ -10,14 +10,17 @@ msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 17:41+0000\n"
-"PO-Revision-Date: 2025-11-03 17:41+0000\n"
-"Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
-"Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
+"PO-Revision-Date: 2025-12-11 18:11+0000\n"
+"Last-Translator: José Keh <jok@adhoc.inc>\n"
+"Language-Team: Spanish <https://translation.dev-adhoc.com/projects/"
+"aeroo-reports-19-0/aeroo-reports-19-0-report_aeroo/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n != 0 && n % 1000000 == 0)"
+" ? 1 : 2);\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer___logo_image
@@ -233,7 +236,7 @@ msgstr "Activado"
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__error
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__error_details
@@ -282,7 +285,7 @@ msgstr ""
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__styles_mode__global
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__host
@@ -375,7 +378,7 @@ msgstr "Sólo disponible si la salida es un PDF"
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_report_stylesheets__report_styles
 msgid "OpenOffice.org / LibreOffice stylesheet (.odt)"
-msgstr ""
+msgstr "OpenOffice.org / LibreOffice stylesheet (.odt)"
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__parser_model
@@ -390,7 +393,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__out_format
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_search_view
 msgid "Output Mime-type"
-msgstr ""
+msgstr "Output Mime-type"
 
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__tml_source__parser
@@ -437,7 +440,7 @@ msgstr "Procesar por Separado"
 #. odoo-python
 #: code:addons/report_aeroo/report_parser.py:0
 msgid "Process_sep not compatible with selected output format"
-msgstr ""
+msgstr "No es posible procesar por separado con el output format seleccionado"
 
 #. module: report_aeroo
 #: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__disable_fallback
@@ -552,7 +555,7 @@ msgstr "Contenido de la Plantilla"
 #: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__in_format
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_search_view
 msgid "Template Mime-type"
-msgstr ""
+msgstr "Template Mime-type"
 
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.act_aeroo_report_xml_view
@@ -613,19 +616,19 @@ msgstr "Acción del Asistente"
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_docs_config_installer
 msgid "docs_config.installer"
-msgstr ""
+msgstr "docs_config.installer"
 
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_report_product_template_printer
 msgid "report.product_template_printer"
-msgstr ""
+msgstr "report.product_template_printer"
 
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_report_report_aeroo_abstract
 msgid "report.report_aeroo.abstract"
-msgstr ""
+msgstr "report.report_aeroo.abstract"
 
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_report_sample_report
 msgid "report.sample_report"
-msgstr ""
+msgstr "report.sample_report"
