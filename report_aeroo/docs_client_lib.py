@@ -94,7 +94,7 @@ class DOCSConnection:
             is_last = (i + CHUNK_LENGTH) >= data_size
             payload = self._initpack("upload")
             payload["params"].update({"data": chunk, "identifier": identifier, "is_last": is_last})
-            response = requests.post(self.url, data=json.dumps(payload), headers=HEADERS, timeout=10).json()
+            response = requests.post(self.url, data=json.dumps(payload), headers=HEADERS, timeout=60).json()
             self._checkerror(response)
             if "result" not in response:
                 break
@@ -117,7 +117,7 @@ class DOCSConnection:
             payload["params"].update({"in_mime": in_mime})
         if out_mime:
             payload["params"].update({"out_mime": out_mime})
-        response = requests.post(self.url, data=json.dumps(payload), headers=HEADERS, timeout=10).json()
+        response = requests.post(self.url, data=json.dumps(payload), headers=HEADERS, timeout=60).json()
         self._checkerror(response)
         return "result" in response and b64decode(response["result"]) or False
 
@@ -128,7 +128,7 @@ class DOCSConnection:
             payload["params"].update({"in_mime": in_mime})
         if out_mime:
             payload["params"].update({"out_mime": out_mime})
-        response = requests.post(self.url, data=json.dumps(payload), headers=HEADERS, timeout=10).json()
+        response = requests.post(self.url, data=json.dumps(payload), headers=HEADERS, timeout=60).json()
         self._checkerror(response)
         return "result" in response and b64decode(response["result"]) or False
 
