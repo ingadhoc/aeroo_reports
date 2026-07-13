@@ -103,7 +103,9 @@ class ReportAerooAbstract(models.AbstractModel):
 
     def __filter(self, val):
         if isinstance(val, models.BaseModel) and val:
-            return val._compute_display_name()
+            # Leemos display_name; llamar _compute_display_name() directo dispara
+            # un write() real que rompe con usuarios sin permiso (p. ej. res.country).
+            return val[:1].display_name
         return _filter(val)
 
     # Extra Functions ==================================================
