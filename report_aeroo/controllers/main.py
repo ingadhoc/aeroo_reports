@@ -2,12 +2,13 @@
 # Copyright 2018 - Brain-tec AG - Carlos Jesus Cebrian
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 import json
+from urllib.parse import parse_qsl
 
-from odoo import http
 from odoo.addons.web.controllers import report
-from odoo.http import content_disposition, request, route
+from odoo.http import request, route
+from odoo.http.dispatcher import serialize_exception
+from odoo.http.stream import content_disposition
 from odoo.tools import html_escape
-from werkzeug.urls import url_decode
 
 
 class ReportController(report.ReportController):
@@ -78,7 +79,7 @@ class ReportController(report.ReportController):
             if "/" in reportname:
                 reportname, docids = reportname.split("/")
             # on aeroo we support docids + data
-            data = url_decode(url.split("?")[1]).items()
+            data = parse_qsl(url.split("?")[1])
             # TODO deberiamos ver si podemos mejorar esto que va de la mano con algo que comentamos en js
             # y no parece ser lo que hacen otros. Basicamente estamos obteniendo lo que mandamos en context al imprimir
             # el reporte, desde la URl
@@ -96,6 +97,6 @@ class ReportController(report.ReportController):
             #         reportname, converter='aeroo', **dict(data))
             return response
         except Exception as e:
-            se = http.serialize_exception(e)
+            se = serialize_exception(e)
             error = {"code": 200, "message": "Odoo Server Error", "data": se}
             return request.make_response(html_escape(json.dumps(error)))

@@ -28,7 +28,7 @@ from odoo import (
     tools as tools,
 )
 from odoo.exceptions import MissingError
-from odoo.modules.module import load_manifest
+from odoo.modules.module import get_manifest
 from odoo.tools import frozendict
 
 # for format_datetime
@@ -39,12 +39,12 @@ from odoo.tools.misc import (
     get_lang,
     posix_to_ldml,
 )
+from odoo.tools.pdf import PdfFileReader, PdfFileWriter
 from odoo.tools.safe_eval import (
     safe_eval,
     time as safeval_time,
 )
 from PIL import Image, UnidentifiedImageError
-from PyPDF2 import PdfFileReader, PdfFileWriter
 
 from .docs_client_lib import DOCSConnection
 from .exceptions import ConnectionError
@@ -275,7 +275,7 @@ class ReportAerooAbstract(models.AbstractModel):
 
     def get_docs_conn(self):
         icp = self.env.get("ir.config_parameter").sudo()
-        icpgp = icp.get_param
+        icpgp = icp.get_str
         docs_host = icpgp("aeroo.docs_host") or "localhost"
         docs_port = icpgp("aeroo.docs_port") or "8989"
         # docs_auth_type = icpgp('aeroo.docs_auth_type') or False
@@ -303,17 +303,17 @@ class ReportAerooAbstract(models.AbstractModel):
         # manipulates the outgoing pdf report
         if mime_dict[report.out_format.code] == "pdf" and report.copies > 1:
             output = PdfFileWriter()
-            reader = PdfFileReader(BytesIO(data))
+            reader = PdfFileReader(BytesIO(data), strict=False)
             copies_intercalate = report.copies_intercalate
             copies = report.copies
             if copies_intercalate:
                 for copy in range(copies):
-                    for page in range(reader.getNumPages()):
-                        output.addPage(reader.getPage(page))
+                    for page in reader.pages:
+                        output.add_page(page)
             else:
-                for page in range(reader.getNumPages()):
+                for page in reader.pages:
                     for copy in range(copies):
-                        output.addPage(reader.getPage(page))
+                        output.add_page(page)
             s = BytesIO()
             output.write(s)
             data = s.getvalue()
@@ -489,7 +489,7 @@ class ReportAerooAbstract(models.AbstractModel):
         user_name = self.env.user.name
         ser.add_creation_user(user_name)
 
-        module_info = load_manifest("report_aeroo")
+        module_info = get_manifest("report_aeroo")
         version = module_info["version"]
         ser.add_generator_info("Aeroo Lib/%s Aeroo Reports/%s" % (aeroolib_version, version))
         ser.add_custom_property("Aeroo Reports %s" % version, "Generator")
@@ -567,12 +567,14 @@ class ReportAerooAbstract(models.AbstractModel):
 
             results = []
             for docid in docids:
-                results.append(self.assemble_tasks([docid], data, report, self.env.context))
+                # complex_report() sets attributes on self.env, which are read-only once set
+                parser = self.with_context(aeroo_process_sep_docid=docid)
+                results.append(parser.assemble_tasks([docid], data, report, parser.env.context))
             output = PdfFileWriter()
             for r in results:
-                reader = PdfFileReader(BytesIO(r[0]))
-                for page in range(reader.getNumPages()):
-                    output.addPage(reader.getPage(page))
+                reader = PdfFileReader(BytesIO(r[0]), strict=False)
+                for page in reader.pages:
+                    output.add_page(page)
             s = BytesIO()
             output.write(s)
             data = s.getvalue()
