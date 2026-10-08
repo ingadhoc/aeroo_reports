@@ -135,8 +135,7 @@ class ReportAeroo(models.Model):
         Check if Aeroo DOCS connection is enabled
         """
         icp = self.env["ir.config_parameter"].sudo()
-        enabled = icp.get_param("aeroo.docs_enabled")
-        return enabled == "True" and True or False
+        return icp.get_bool("aeroo.docs_enabled")
 
     @api.model
     def _get_in_mimetypes(self):
@@ -175,6 +174,8 @@ class ReportAeroo(models.Model):
         default="database",
         index=True,
     )
+    # Removed from ir.actions.report in 20.0; aeroo keeps it for file templates
+    report_file = fields.Char(help="Path to the template file, e.g. 'module/report/template.odt'.")
     attachment_id = fields.Many2one("ir.attachment", domain=[("res_model", "=", "report.aeroo")], ondelete="set null")
     parser_model = fields.Char(
         help='Optional model to be used as parser, if not configured "report.report_aeroo.abstract" will be used'

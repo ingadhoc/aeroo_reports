@@ -73,23 +73,22 @@ class DocsConfigInstaller(models.TransientModel):
     def default_get(self, allfields):
         icp = self.env["ir.config_parameter"].sudo()
         defaults = super(DocsConfigInstaller, self).default_get(allfields)
-        enabled = icp.get_param("aeroo.docs_enabled")
-        defaults["enabled"] = enabled == "True" and True or False
-        defaults["host"] = icp.get_param("aeroo.docs_host") or "localhost"
-        defaults["port"] = int(icp.get_param("aeroo.docs_port")) or 8989
-        defaults["auth_type"] = icp.get_param("aeroo.docs_auth_type") or False
-        defaults["username"] = icp.get_param("aeroo.docs_username") or "anonymous"
-        defaults["password"] = icp.get_param("aeroo.docs_password") or "anonymous"
+        defaults["enabled"] = icp.get_bool("aeroo.docs_enabled")
+        defaults["host"] = icp.get_str("aeroo.docs_host") or "localhost"
+        defaults["port"] = icp.get_int("aeroo.docs_port") or 8989
+        defaults["auth_type"] = icp.get_str("aeroo.docs_auth_type") or False
+        defaults["username"] = icp.get_str("aeroo.docs_username") or "anonymous"
+        defaults["password"] = icp.get_str("aeroo.docs_password") or "anonymous"
         return defaults
 
     def check(self):
         icp = self.env["ir.config_parameter"].sudo()
-        icp.set_param("aeroo.docs_enabled", str(self.enabled))
-        icp.set_param("aeroo.docs_host", self.host)
-        icp.set_param("aeroo.docs_port", self.port)
-        icp.set_param("aeroo.docs_auth_type", self.auth_type or "simple")
-        icp.set_param("aeroo.docs_username", self.username)
-        icp.set_param("aeroo.docs_password", self.password)
+        icp.set_bool("aeroo.docs_enabled", self.enabled)
+        icp.set_str("aeroo.docs_host", self.host)
+        icp.set_int("aeroo.docs_port", self.port)
+        icp.set_str("aeroo.docs_auth_type", self.auth_type or "simple")
+        icp.set_str("aeroo.docs_username", self.username)
+        icp.set_str("aeroo.docs_password", self.password)
         error_details = ""
         state = "done"
 
