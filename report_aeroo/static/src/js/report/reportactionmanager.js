@@ -31,19 +31,8 @@ async function aerooReportHandler (action, options, env){
         } finally {
             env.services.ui.unblock();
         }
-        const onClose = options.onClose;
-        if (action.close_on_report_download) {
-            return env.services.action.doAction(
-                {type: "ir.actions.act_window_close"},
-                {onClose}
-            );
-        } else if (onClose) {
-            onClose();
-        }
-        // DIFF: need to inform success to the original method. Otherwise it
-        // will think our hook function did nothing and run the original
-        // method.
-        return Promise.resolve(true);
+        // returning true lets the core close the dialog and call onClose
+        return true;
     }
 }
 
