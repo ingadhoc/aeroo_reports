@@ -9,6 +9,7 @@ import binascii
 import datetime
 import logging
 import time
+import uuid
 from base64 import b64decode
 from io import BytesIO
 
@@ -547,6 +548,9 @@ class ReportAerooAbstract(models.AbstractModel):
 
     @api.model
     def aeroo_report(self, docids, data):
+        # complex_report() sets attributes on self.env, which are read-only once set,
+        # and envs are shared by context within a transaction: each render needs its own
+        self = self.with_context(aeroo_render_id=uuid.uuid4().hex)
         report_name = self.env.context.get("report_name")
         report = self.env["ir.actions.report"]._get_report_from_name(report_name)
         # TODO
@@ -567,8 +571,7 @@ class ReportAerooAbstract(models.AbstractModel):
 
             results = []
             for docid in docids:
-                # complex_report() sets attributes on self.env, which are read-only once set
-                parser = self.with_context(aeroo_process_sep_docid=docid)
+                parser = self.with_context(aeroo_render_id=uuid.uuid4().hex)
                 results.append(parser.assemble_tasks([docid], data, report, parser.env.context))
             output = PdfFileWriter()
             for r in results:
