@@ -1,88 +1,60 @@
-This is ALPHA version of Aeroo Reports for Odoo v11
---------------------------------------------------------------------------------
+Aeroo Reports
+=============
 
-Enterprise grade reporting solution for Odoo
---------------------------------------------------------------------------------
-Aeroo Reports for Odoo is a comprehensive and versatile reporting engine based
-on Aeroo Library.
+Aeroo Reports prints documents (invoices, delivery slips, labels, lists) from
+templates made in LibreOffice: a text document (`.odt`) or a spreadsheet
+(`.ods`) with marks where the record data goes. When a report is printed, the
+template is filled with the data and the file is returned.
 
-It supports most of the current and leacy business document formats. Being it
-printable invoice, personalized HTML content for e-mail marketing or just an
-inventory labels - Aeroo Reports can do them all.
+The output can stay in the template format or be converted to PDF, Word
+(`.doc`), Excel (`.xls`) or CSV. The conversion is done by an external
+document service (Aeroo DOCS).
 
-Even more, using RAW reporting option, you can create reports for your custom
-document format, that gives full advantage of integrating bost office &
-industrial printing hardware and software.
+This module is the base of the Aeroo reports of other modules.
 
-Developing new reports is as easy as using mainstream office packages -
-OpenOffice.org/LibreOffice. That means, use them as WYSIWYG template editor.
+Configuration
+-------------
 
-For more information on how this technology differs from other
-reporting options, please reference reporting engine comparison matrix:
-http://www.alistek.com/wiki/index.php/Comparison_matrix_of_reporting_engines_for_OpenERP
+* **Document service**: Settings > Technical > Reporting > Aeroo DOCS
+  connection. Set the host, port and credentials of the service and enable it.
+  Without it, reports can only be printed in the template format.
+* **Global stylesheet**: on the company form, field *Aeroo Reports Global
+  Stylesheet*. Stylesheets are `.odt` files loaded in Settings > Technical >
+  Reporting > Report Stylesheets.
 
+Usage
+-----
 
-Sponsors of Aeroo Reports port for Odoo v11
---------------------------------------------------------------------------------
-Special thanks goes to ADHOC commitment and FlectraHQ for making huge difference
+Create or open a report in Settings > Technical > Reporting > Reports, set
+*Format* to *Aeroo Reports* and fill the *Aeroo Configuration* tab:
 
-* ADHOC - https://www.adhoc.com.ar/
-* FlectraHQ - https://flectrahq.com/
-* BESCO - http://besco.vn"
-* Serpent CS - http://www.serpentcs.com/
-* CYSFuturo - support@​cysfuturo.com
+* **Template source**: the template can be uploaded to the report
+  (*Database*), read from a module file (*File*, path like
+  `module/report/template.odt`) or taken from an attachment.
+* **Template and output mime-type**: the output must be compatible with the
+  template (`.odt` to `.odt`, `.doc` or PDF; `.ods` to `.ods`, `.xls`, CSV or
+  PDF).
+* **Number of copies** and **intercalate** (PDF output only): with 2 copies,
+  intercalated pages come out 1, 2, 1, 2; otherwise 1, 1, 2, 2.
+* **Stylesheet**: none, the company global one, or a specific one.
+* **Parser model**: an abstract model that inherits
+  `report.report_aeroo.abstract` to add data or functions to the template.
+* **Process separately** (PDF output only): with several records, one document
+  is generated per record and the PDFs are merged.
+* **Disable format fallback**: raise an error when the conversion fails,
+  instead of returning the file in the template format.
 
-Modules in this category
---------------------------------------------------------------------------------
-* Aeroo Reports (report_aeroo), this module
-* Aeroo Reports Direct Print (report_aeroo_direct_print), print reports without preview
-* Aeroo Reports Prinscreen (report_aeroo_printscreen), report any model in a spreadsheet report
-* Aeroo Reports demo (report_aeroo_sample), just a demo
+The report is printed from the *Print* menu of the model, like any other
+report. The file name follows *Printed Report Name*.
 
-More information and documentation
---------------------------------------------------------------------------------
-http://www.alistek.com/wiki/index.php/Main_Page
+The *Preload*, *Deferred* and *Replace Report* options and the *Generic*
+template type are kept for compatibility and have no effect.
 
-Report templates in the following formats
---------------------------------------------------------------------------------
-* Open Document Format (ODF) - .odt, .ods;
-* Other ASCII based formats, like HTML, CSV, etc.
+Credits
+-------
 
-Output formats:
---------------------------------------------------------------------------------
-* Open Document Format (ODF) - .odt, .ods;
-* Other ASCII based formats, like HTML, CSV, etc.
-* using Aeroo DOCS - PDF, DOC, XLS, CSV.
+Aeroo Reports is based on the original work of Alistek
+(http://www.alistek.com) and Simone Orsi (Domsense). Port to Odoo sponsored by
+ADHOC, FlectraHQ, BESCO, Serpent CS and CYSFuturo.
 
-Reporting engine features
---------------------------------------------------------------------------------
-* Add reports from UI "on the fly";
-* Install reports from module;
-* Dynamic template load/unload;
-* Extra Functions - set of functions for rapid template development;
-* Use templates stored on filesystem, database or elsewhere;
-* Same button - different templates;
-* Powerful stylesheet system for ODF templates;
-* Global or local stylesheets;
-* Template preloading for performance concerns;
-* User defined parsers;
-* Report deactivation;
-* Optional format fallback;
-* Add/Remove print button wizards;
-* Test report on particular object ID, directly from Report form;
-* Translatable reports;
-* Translation export;
-* Number of copies;
-* Universal Report wizard;
-* Override report file extension (for direct printing, etc);
-* Separate input/output format selections;
-
-Input - Output format pairs
---------------------------------------------------------------------------------
-* odt - odt/doc/pdf;
-* ods - ods/xls/pdf/csv;
-* html - html;
-
-Original work and inspiration
---------------------------------------------------------------------------------
-This module is based on the original work of Simone Orsi (Domsense)
+Maintained by ADHOC SA (https://www.adhoc.com.ar).
