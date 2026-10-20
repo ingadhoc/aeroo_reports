@@ -1,0 +1,6 @@
+id,name,model_id,group_id/id,operation,domain
+report_stylesheets,report.stylesheets,report.stylesheets,base.group_system,crud,
+report_stylesheets_user,report.stylesheets.user,report.stylesheets,base.group_user,r,
+report_mimetypes_system,report.mimetypes.system,report.mimetypes,base.group_system,crud,
+report_mimetypes_user,report.mimetypes.user,report.mimetypes,base.group_user,r,
+docs_config_installer_user,docs.config.installer.user,docs_config.installer,base.group_user,crud,
