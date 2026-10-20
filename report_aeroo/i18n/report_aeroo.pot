@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0+e\n"
+"Project-Id-Version: Odoo Server 20.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 17:19+0000\n"
-"PO-Revision-Date: 2025-11-25 17:19+0000\n"
+"POT-Creation-Date: 2026-10-20 18:10+0000\n"
+"PO-Revision-Date: 2026-10-20 18:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,73 @@ msgstr ""
 
 #. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__ir_actions_report__report_type__aeroo
+#: model:ir.module.module,shortdesc:base.module_report_aeroo
 msgid "Aeroo Reports"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.module.module,description:base.module_report_aeroo
+msgid ""
+"Aeroo Reports\n"
+"=============\n"
+"\n"
+"Aeroo Reports prints documents (invoices, delivery slips, labels, lists) from\n"
+"templates made in LibreOffice: a text document (`.odt`) or a spreadsheet\n"
+"(`.ods`) with marks where the record data goes. When a report is printed, the\n"
+"template is filled with the data and the file is returned.\n"
+"\n"
+"The output can stay in the template format or be converted to PDF, Word\n"
+"(`.doc`), Excel (`.xls`) or CSV. The conversion is done by an external\n"
+"document service (Aeroo DOCS).\n"
+"\n"
+"This module is the base of the Aeroo reports of other modules.\n"
+"\n"
+"Configuration\n"
+"-------------\n"
+"\n"
+"* **Document service**: Settings > Technical > Reporting > Aeroo DOCS\n"
+"  connection. Set the host, port and credentials of the service and enable it.\n"
+"  Without it, reports can only be printed in the template format.\n"
+"* **Global stylesheet**: on the company form, field *Aeroo Reports Global\n"
+"  Stylesheet*. Stylesheets are `.odt` files loaded in Settings > Technical >\n"
+"  Reporting > Report Stylesheets.\n"
+"\n"
+"Usage\n"
+"-----\n"
+"\n"
+"Create or open a report in Settings > Technical > Reporting > Reports, set\n"
+"*Format* to *Aeroo Reports* and fill the *Aeroo Configuration* tab:\n"
+"\n"
+"* **Template source**: the template can be uploaded to the report\n"
+"  (*Database*), read from a module file (*File*, path like\n"
+"  `module/report/template.odt`) or taken from an attachment.\n"
+"* **Template and output mime-type**: the output must be compatible with the\n"
+"  template (`.odt` to `.odt`, `.doc` or PDF; `.ods` to `.ods`, `.xls`, CSV or\n"
+"  PDF).\n"
+"* **Number of copies** and **intercalate** (PDF output only): with 2 copies,\n"
+"  intercalated pages come out 1, 2, 1, 2; otherwise 1, 1, 2, 2.\n"
+"* **Stylesheet**: none, the company global one, or a specific one.\n"
+"* **Parser model**: an abstract model that inherits\n"
+"  `report.report_aeroo.abstract` to add data or functions to the template.\n"
+"* **Process separately** (PDF output only): with several records, one document\n"
+"  is generated per record and the PDFs are merged.\n"
+"* **Disable format fallback**: raise an error when the conversion fails,\n"
+"  instead of returning the file in the template format.\n"
+"\n"
+"The report is printed from the *Print* menu of the model, like any other\n"
+"report. The file name follows *Printed Report Name*.\n"
+"\n"
+"The *Preload*, *Deferred* and *Replace Report* options and the *Generic*\n"
+"template type are kept for compatibility and have no effect.\n"
+"\n"
+"Credits\n"
+"-------\n"
+"\n"
+"Aeroo Reports is based on the original work of Alistek\n"
+"(http://www.alistek.com) and Simone Orsi (Domsense). Port to Odoo sponsored by\n"
+"ADHOC, FlectraHQ, BESCO, Serpent CS and CYSFuturo.\n"
+"\n"
+"Maintained by ADHOC SA (https://www.adhoc.com.ar).\n"
 msgstr ""
 
 #. module: report_aeroo
@@ -115,7 +181,7 @@ msgstr ""
 
 #. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_res_company
-msgid "Companies"
+msgid "Company"
 msgstr ""
 
 #. module: report_aeroo
@@ -221,6 +287,11 @@ msgid "Enabled"
 msgstr ""
 
 #. module: report_aeroo
+#: model:ir.module.module,summary:base.module_report_aeroo
+msgid "Enterprise grade reporting solution"
+msgstr ""
+
+#. module: report_aeroo
 #: model:ir.model.fields.selection,name:report_aeroo.selection__docs_config_installer__state__error
 msgid "Error"
 msgstr ""
@@ -256,6 +327,11 @@ msgstr ""
 #. module: report_aeroo
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_docs_config_installer
 msgid "Finish"
+msgstr ""
+
+#. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_type
+msgid "Format"
 msgstr ""
 
 #. module: report_aeroo
@@ -395,6 +471,11 @@ msgid "Password"
 msgstr ""
 
 #. module: report_aeroo
+#: model:ir.model.fields,help:report_aeroo.field_ir_actions_report__report_file
+msgid "Path to the template file, e.g. 'module/report/template.odt'."
+msgstr ""
+
+#. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__port
 msgid "Port"
 msgstr ""
@@ -445,6 +526,11 @@ msgid "Report Action"
 msgstr ""
 
 #. module: report_aeroo
+#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_file
+msgid "Report File"
+msgstr ""
+
+#. module: report_aeroo
 #: model:ir.model,name:report_aeroo.model_report_mimetypes
 msgid "Report Mime-Types"
 msgstr ""
@@ -458,11 +544,6 @@ msgstr ""
 #: model:ir.model,name:report_aeroo.model_report_stylesheets
 #: model_terms:ir.ui.view,arch_db:report_aeroo.view_report_stylesheets_tree
 msgid "Report Stylesheets"
-msgstr ""
-
-#. module: report_aeroo
-#: model:ir.model.fields,field_description:report_aeroo.field_ir_actions_report__report_type
-msgid "Report Type"
 msgstr ""
 
 #. module: report_aeroo
@@ -556,25 +637,12 @@ msgstr ""
 msgid ""
 "The type of the report that will be rendered, each one having its own "
 "rendering method. HTML means the report will be opened directly in your "
-"browser PDF means the report will be rendered using Wkhtmltopdf and "
-"downloaded by the user."
-msgstr ""
-
-#. module: report_aeroo
-#. odoo-python
-#: code:addons/report_aeroo/check_deps.py:0
-msgid "Unmet python dependencies!"
+"browser, PDF means the report will be generated and downloaded by the user."
 msgstr ""
 
 #. module: report_aeroo
 #: model:ir.model.fields,field_description:report_aeroo.field_docs_config_installer__username
 msgid "Username"
-msgstr ""
-
-#. module: report_aeroo
-#. odoo-python
-#: code:addons/report_aeroo/check_deps.py:0
-msgid "Warning!"
 msgstr ""
 
 #. module: report_aeroo
