@@ -365,7 +365,10 @@ class ReportAerooAbstract(models.AbstractModel):
             return odoo_fd(self.env, value, lang_code=lang_code, date_format=date_format)
         elif date_time:
             return format_datetime(self.env, value, lang_code=lang_code, date_format=date_format, tz=self.env.tz)
-        return odoo_fl(self.env, value, digits, grouping, monetary, dp, currency_obj)
+        # Odoo dropped the ``monetary`` argument, so pass the rest by keyword
+        return odoo_fl(
+            self.env, value, digits=digits, grouping=grouping, dp=dp or None, currency_obj=currency_obj or None
+        )
 
     def _set_objects(self, model, docids):
         _logger.log(25, "AEROO setobjects======================= %s - %s", model, docids)
