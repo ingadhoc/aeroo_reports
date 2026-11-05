@@ -11,7 +11,7 @@ from base64 import b64decode
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import file_open
+from odoo.tools import BinaryValue, file_open
 
 _logger = logging.getLogger(__name__)
 
@@ -250,7 +250,8 @@ class ReportAeroo(models.Model):
         #         orec['report_type'] != vals['report_type']:
         #     raise UserError(_("Changing report type not allowed!"))
 
-        if "report_data" in vals and vals["report_data"]:
+        # a BinaryValue is already decoded; only an RPC string can be bad base64
+        if "report_data" in vals and vals["report_data"] and not isinstance(vals["report_data"], BinaryValue):
             try:
                 b64decode(vals["report_data"])
             except binascii.Error:
