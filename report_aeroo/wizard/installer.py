@@ -5,11 +5,10 @@
 ###############################################################################
 
 import os
-from base64 import b64encode
 from urllib.request import urlopen
 
 from odoo import _, api, fields, models
-from odoo.tools import file_open
+from odoo.tools import BinaryBytes, file_open
 
 from ..docs_client_lib import DOCSConnection
 
@@ -21,28 +20,19 @@ class DocsConfigInstaller(models.TransientModel):
     _description = "docs_config.installer"
     _inherit = "res.config"
     _rec_name = "host"
-    _logo_image = fields.Binary()
 
     @api.model
     def _get_image(self):
-        if self._logo_image:
-            return self._logo_image
         try:
             im = urlopen(_url.encode("UTF-8"), timeout=10)
             if im.headers.maintype != "image":
                 raise TypeError(im.headers.maintype)
         except Exception:
             path = os.path.join("report_aeroo", "config_pixmaps", "module_banner_1.png")
-            image_file = file_data = file_open(path, "rb")
-            try:
-                file_data = image_file.read()
-                self._logo_image = b64encode(file_data)
-                return self._logo_image
-            finally:
-                image_file.close()
+            with file_open(path, "rb") as image_file:
+                return BinaryBytes(image_file.read())
         else:
-            self._logo_image = b64encode(im.read())
-            return self._logo_image
+            return BinaryBytes(im.read())
 
     def _compute_config_logo(recs):
         recs.config_logo = recs._get_image()

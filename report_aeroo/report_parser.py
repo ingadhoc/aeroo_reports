@@ -51,6 +51,15 @@ from .docs_client_lib import DOCSConnection
 from .exceptions import ConnectionError
 
 
+def binary_content(value):
+    """Binary fields hand over a BinaryValue in 20; other callers still pass base64."""
+    if not value:
+        return b""
+    if isinstance(value, BinaryValue):
+        return bytes(value)
+    return b64decode(value)
+
+
 def format_datetime(env, value, lang_code=False, date_format=False, tz="America/Argentina/Buenos_Aires"):
     """
     This is an adaptation of odoo format_date method but to format
@@ -193,12 +202,7 @@ class ReportAerooAbstract(models.AbstractModel):
         if not field_value:
             return BytesIO(), "image/png"
         try:
-            # Odoo hands over a BinaryValue, whose content is already decoded
-            if isinstance(field_value, BinaryValue):
-                field_value = bytes(field_value)
-            else:
-                field_value = b64decode(field_value)
-            tf = BytesIO(field_value)
+            tf = BytesIO(binary_content(field_value))
             tf.seek(0)
             im = Image.open(tf)
             im.verify()  # Verifica que el archivo es una imagen válida
@@ -410,7 +414,7 @@ class ReportAerooAbstract(models.AbstractModel):
             elif report.styles_mode == "specified":
                 styles = report.stylesheet_id
             if styles:
-                style_io = b64decode(styles.report_styles or False)
+                style_io = binary_content(styles.report_styles)
         return style_io
 
     def complex_report(self, docids, data, report, ctx):
@@ -463,14 +467,14 @@ class ReportAerooAbstract(models.AbstractModel):
             if not report.report_data or report.report_data == "False":
                 # TODO log report ID etc.
                 raise MissingError(_("Aeroo Reports could'nt find report template"))
-            file_data = b64decode(report.report_data)
+            file_data = binary_content(report.report_data)
         elif report.tml_source == "file":
             if not report.report_file or report.report_file == "False":
                 # TODO log report ID etc.
                 raise MissingError(_("No Aeroo Reports template filename provided"))
             file_data = report._read_template()
         elif report.tml_source == "attachment":
-            file_data = b64decode(report.attachment_id.datas)
+            file_data = binary_content(report.attachment_id.raw)
         else:
             rec_id = ctx.get("active_id", data.get("id")) or data.get("id")
             file_data = self.get_other_template(self.env.model, rec_id)
