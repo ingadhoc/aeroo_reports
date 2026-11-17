@@ -223,8 +223,12 @@ class ReportAeroo(models.Model):
 
     @api.constrains("parser_model")
     def _check_parser_model(self):
+        # parser_model holds a technical model name, so it is matched against ir.model.model.
+        # Matching it against ir.model.name -- the translated label -- only ever found a parser
+        # whose _description repeated its _name, the way the demo one does, and rejected every
+        # parser that gave itself a readable description.
         for rec in self.filtered("parser_model"):
-            if not rec.env["ir.model"].search([("name", "=", rec.parser_model)], limit=1):
+            if not rec.env["ir.model"].search([("model", "=", rec.parser_model)], limit=1):
                 raise UserError(_("Parser model %s not found on database.") % (rec.parser_model))
 
     def read(self, fields=None, load="_classic_read"):
